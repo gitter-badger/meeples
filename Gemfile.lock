@@ -109,8 +109,6 @@ GEM
       railties (>= 3.0.0)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
-    font_assets (0.1.11)
-      rack
     foreman (0.75.0)
       dotenv (~> 0.11.1)
       thor (~> 0.19.1)
@@ -127,10 +125,6 @@ GEM
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
     hashie (3.3.1)
-    heroku_rails_deflate (1.0.3)
-      actionpack (>= 3.2.13)
-      activesupport (>= 3.2.13)
-      rack (>= 1.4.5)
     hike (1.2.3)
     hirb (0.7.2)
     i18n (0.6.11)
@@ -326,10 +320,8 @@ DEPENDENCIES
   devise
   dotenv-rails
   factory_girl_rails
-  font_assets
   foreman
   haml-rails
-  heroku_rails_deflate
   hirb
   jquery-rails
   jquery-ui-rails
