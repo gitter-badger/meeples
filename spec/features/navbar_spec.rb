@@ -21,6 +21,8 @@ describe 'Navbar' do
       should have_css(".navbar a[href='#{ new_user_session_path }']")
     end
 
+    it { should have_css "a[href='#{ games_path }']" }
+
   end
 
   context 'as a user' do
