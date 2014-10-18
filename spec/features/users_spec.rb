@@ -157,6 +157,45 @@ describe 'Users' do
 
     end
 
+    describe 'with github' do
+
+      before do
+        visit root_path
+      end
+
+      describe 'invalid data' do
+
+        before do
+          OmniAuth.config.mock_auth[:github] = :invalid
+        end
+
+        it 'displays an error' do
+          click_link 'Sign in with Github'
+
+          should have_content 'Could not authenticate you from GitHub'
+        end
+
+      end
+
+      describe 'valid data' do
+
+        before do
+          OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new credentials: { expires: false, token: '123ABC', email: 'test@github.com' },
+                                                                      provider:    'github',
+                                                                      uid:         '123545'
+        end
+
+        it 'displays a success message' do
+          skip
+          click_link 'Sign in with Github'
+
+          should have_content 'Successfully authenticated from Github account'
+        end
+
+      end
+
+    end
+
   end
 
   describe 'signing out' do
