@@ -216,4 +216,27 @@ describe 'Users' do
 
   end
 
+  describe 'listing users' do
+
+    before do
+      login_as user
+    end
+
+    it 'should have a link to view all users' do
+      should have_css("a[href='#{ users_path }']")
+    end
+
+    it 'should list users' do
+      user_a = FactoryGirl.create :user, email: 'user_a@example.com'
+      user_b = FactoryGirl.create :user, email: 'user_b@example.com'
+
+      visit users_path
+      
+      should have_content 'user_a@example.com'
+      should have_content 'user_b@example.com'
+      should have_content user.email
+    end
+
+  end
+
 end

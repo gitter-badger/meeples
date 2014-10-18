@@ -33,4 +33,8 @@ FactoryGirl.define do
 
   end
 
+  factory :friendship do
+    user
+  end
+
 end

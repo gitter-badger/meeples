@@ -12,6 +12,11 @@
       %ul.nav.navbar-nav
         %li= link_to 'games', games_path
 
+      %ul.nav.navbar-nav.navbar-left
+        -if user_signed_in?
+          %li= link_to 'Users', users_path
+          %li= link_to 'Friends', friendships_path
+
       %ul.nav.navbar-nav.navbar-right
         %li.divider-vertical
           - if user_signed_in?

@@ -1,0 +1,12 @@
+.row-fluid
+  %table.table.table-striped
+
+    %thead
+      %tr
+        %th Email
+        %th
+
+    %tbody
+      - @friends.each do |friend|
+        %tr
+          %td= friend.email
