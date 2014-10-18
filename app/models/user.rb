@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
   devise :omniauthable, omniauth_providers: %i[ facebook github ]
 
   has_many :plays, -> { order 'created_at desc' }
+  has_many :friendships
+  has_many :friends, :through => :friendships
 
   scope :admin,           ->{ where admin: true }
   scope :access_locked,   ->{ where 'locked_at IS NOT NULL AND locked_at >= ?', unlock_in.ago }

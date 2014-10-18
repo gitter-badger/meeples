@@ -10,6 +10,9 @@ Meeple::Application.routes.draw do
 
   resources :users, only: %i[ show ]
 
+  resources :users,       only: [:index, :show]
+  resources :friendships, only: [:index, :create]
+
   root to: 'welcome#index'
 
 end

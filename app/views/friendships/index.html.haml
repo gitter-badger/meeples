@@ -1,0 +1,13 @@
+.row-fluid
+  %table.table.table-striped.table-bordered
+
+    %thead
+      %tr
+        %th Email
+        %th
+
+    %tbody
+      - @friends.each do |friend|
+        %tr
+          %td= link_to friend.email, user_path(friend)
+          %td

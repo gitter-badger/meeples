@@ -1,0 +1,15 @@
+.row-fluid
+  %table.table.table-striped.table-bordered
+
+    %thead
+      %tr
+        %th Email
+        %th
+
+    %tbody
+      - @users.each do |user|
+        %tr
+          %td= user.email
+          %td
+            - unless current_user == user || current_user.friends.include?(user)
+              =link_to 'Add Friend', friendships_path(:friend_id => user), :method => :post
