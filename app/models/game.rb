@@ -5,7 +5,7 @@ class Game < ActiveRecord::Base
 
   validates :name, presence: true
 
-  scope :lookup, ->(name){ where 'lower(name) like ?', "%#{name}%"}
+  scope :lookup, ->(n){ where 'lower(name) like ?', "%#{ n }%" }
 
   def self.search_by_name game_name
     games = lookup game_name
