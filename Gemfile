@@ -16,6 +16,7 @@ gem 'pg'
 gem 'pry-rails'
 gem 'redcarpet'
 gem 'sass-rails'
+gem 'simple_form', '~> 3.1.0.rc1'
 
 group :assets do
   gem 'coffee-rails'
