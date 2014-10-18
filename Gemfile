@@ -57,4 +57,5 @@ group :test do
   gem 'syntax'
   gem 'timecop'
   gem 'validation_matcher'
+  gem 'vcr'
 end
