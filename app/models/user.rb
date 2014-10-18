@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
          :trackable,
          :validatable
 
-  devise :omniauthable, omniauth_providers: %i[ facebook github ]
+  devise :omniauthable, omniauth_providers: %i[ facebook github twitter ]
 
   scope :admin,           ->{ where admin: true }
   scope :access_locked,   ->{ where 'locked_at IS NOT NULL AND locked_at >= ?', unlock_in.ago }
