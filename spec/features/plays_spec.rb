@@ -3,6 +3,8 @@ require 'spec_helper'
 describe 'Plays' do
 
   include ActionView::Helpers::DateHelper
+  include ActionView::Helpers::TextHelper
+  include ActionView::RecordIdentifier
 
   subject { page }
 
@@ -76,6 +78,13 @@ describe 'Plays' do
 
     it 'includes played games' do
       all('.game').count.should == player.played_games.count
+    end
+
+    it 'includes number of times each game was played' do
+      player.played_games.map do |game|
+        count = player.plays.where(game: game).count
+        within("##{ dom_id game }") { should have_content "#{ pluralize count, 'play' }" }
+      end
     end
 
   end

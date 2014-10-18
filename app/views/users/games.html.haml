@@ -10,8 +10,11 @@
     %thead
       %tr
         %th Game
+        %th Plays
 
     %tbody
       - for game in @user.played_games
         %tr.game{ id: dom_id(game) }
           %td= link_to game.name, game
+          %td
+            = pluralize @user.plays.where(game: game).count, 'play'
