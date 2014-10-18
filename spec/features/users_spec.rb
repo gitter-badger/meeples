@@ -20,6 +20,7 @@ describe 'Users' do
 
       # valid data
       fill_in_fields 'user', email:                 'user@testing.com',
+                             username:              'usertest',
                              password:              'password',
                              password_confirmation: 'password'
 
@@ -100,10 +101,10 @@ describe 'Users' do
       it 'can sign in' do
         # invalid data
         click_button 'Sign in'
-        should have_content 'Invalid email or password'
+        should have_content 'Invalid login or password'
 
         # valid data
-        fill_in_fields :user, email: user.email, password: 'password'
+        fill_in_fields :user, login: user.email, password: 'password'
         click_button 'Sign in'
         should have_content 'Signed in successfully'
       end
@@ -111,7 +112,7 @@ describe 'Users' do
       context 'as an admin' do
 
         it 'redirects to admin panel' do
-          fill_in_fields :user, email: admin.email, password: 'password'
+          fill_in_fields :user, login: admin.email, password: 'password'
           click_button 'Sign in'
 
           should_be_on admin_dashboard_path

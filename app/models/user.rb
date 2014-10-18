@@ -16,15 +16,35 @@ class User < ActiveRecord::Base
   has_many :friendships
   has_many :friends, :through => :friendships
 
+  validates :username, presence: true, uniqueness: { case_sensitive: false }
+
   scope :admin,           ->{ where admin: true }
   scope :access_locked,   ->{ where 'locked_at IS NOT NULL AND locked_at >= ?', unlock_in.ago }
   scope :access_unlocked, ->{ where 'locked_at IS NULL OR locked_at < ?',       unlock_in.ago }
 
+  attr_accessor :login
+
+  # Devise find for authentication override
+  # used to allow authentication via email or username
+  def self.find_for_database_authentication warden_conditions
+    conditions = warden_conditions.dup
+    login = conditions.delete(:login)
+    query = where(conditions)
+    if login
+      query.where('lower(username) = :login OR lower(email) = :login', { login: login.downcase }).first
+    else
+      query.first
+    end
+  end
+
   def self.from_omniauth auth
     password = Devise.friendly_token[0,20]
+    info = auth.info
+    email = info.email
 
     user = where(provider: auth.provider, uid: auth.uid).first_or_create do |u|
-      u.email                 = auth.info.email
+      u.username              = info.nickname.blank? ? email : info.nickname
+      u.email                 = email.blank? ? "#{u.username}@meepl.es" : email
       u.password              = password
       u.password_confirmation = password
     end
@@ -35,14 +55,11 @@ class User < ActiveRecord::Base
 
   def self.new_with_session params, session
     super.tap do |user|
+      Rails.logger.error "#new_with_session: #{user.inspect}"
       if data = session['devise.facebook_data'] && session['devise.facebook_data']['extra']['raw_info']
         user.email ||= data['email']
       end
     end
-  end
-
-  def display_name
-    email
   end
 
   def locked?

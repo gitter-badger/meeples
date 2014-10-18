@@ -55,7 +55,7 @@ describe 'Plays' do
     end
 
     it 'includes user' do
-      should have_content play.user.display_name
+      should have_content play.user.username
     end
 
   end

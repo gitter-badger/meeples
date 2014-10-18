@@ -113,6 +113,7 @@ describe 'Managing Users' do
       end
 
       it 'creates a new user' do
+        skip 'Admin to be removed'
         # invalid data
         click_button 'Create User'
 
@@ -120,7 +121,7 @@ describe 'Managing Users' do
         should have_css '.input.error'
 
         # valid data
-        fill_in_fields :user, email: 'picard@enterprise.com', password: 'password'
+        fill_in_fields :user, username: 'picard@enterprise.com', password: 'password'
 
         check 'Admin'
 
