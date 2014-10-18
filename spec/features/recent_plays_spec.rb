@@ -7,6 +7,7 @@ describe 'My Recent Plays' do
   subject { page }
 
   let(:player) { create :user }
+  let(:plays)  { player.plays.recent }
 
   before do
     Timecop.scale(1000) { create_list :play, 20, user: player }
@@ -25,11 +26,15 @@ describe 'My Recent Plays' do
   end
 
   it 'includes the name of each game' do
-    player.plays.recent.map { |p| should have_content p.game.name }
+    plays.map { |p| should have_content p.game.name }
   end
 
   it 'includes play time' do
-    player.plays.recent.map { |p| should have_content time_ago_in_words(p.game.created_at) }
+    plays.map { |p| should have_content time_ago_in_words(p.game.created_at) }
+  end
+
+  it 'links to the game' do
+    plays.map { |p| should have_css "a[href='#{ game_path p.game }']"}
   end
 
   after do

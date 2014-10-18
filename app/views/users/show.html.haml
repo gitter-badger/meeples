@@ -14,7 +14,7 @@
     %tbody
       - for play in @user.plays.recent
         %tr.play{ id: dom_id(play) }
-          %td= play.game.name
+          %td= link_to play.game.name, play.game
           %td
             = time_ago_in_words play.created_at
             ago
