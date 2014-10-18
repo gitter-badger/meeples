@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '2.1.3'
+
 gem 'rails'
 
 gem 'activeadmin',    github: 'gregbell/active_admin'
@@ -21,11 +23,13 @@ group :assets do
   gem 'uglifier'
 end
 
-group :production do
+group :production, :staging do
   gem 'dalli'
   gem 'memcachier'
   gem 'newrelic_rpm'
+  gem 'rack-attack'
   gem 'rails_12factor'
+  gem 'rollbar',               '~> 1.0.0'
   gem 'unicorn'
 end
 
@@ -53,8 +57,4 @@ group :test do
   gem 'syntax'
   gem 'timecop'
   gem 'validation_matcher'
-
-  # alternative DBs for CI
-  gem 'mysql2'
-  gem 'sqlite3'
 end

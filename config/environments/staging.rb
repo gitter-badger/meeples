@@ -16,6 +16,14 @@ Meeple::Application.configure do
   config.serve_static_assets               = true
   config.static_cache_control              = 'public, max-age=31536000'
 
+  config.cache_store = :dalli_store, (ENV['MEMCACHIER_SERVERS'] || '').split(','), {
+    username:             ENV['MEMCACHIER_USERNAME'],
+    password:             ENV['MEMCACHIER_PASSWORD'],
+    failover:             true,
+    socket_timeout:       1.5,
+    socket_failure_delay: 0.2
+  }
+
   config.action_mailer.default_url_options = { host: ENV['EMAIL_HOST'] }
   config.action_mailer.smtp_settings = {
     :address        => 'smtp.sendgrid.net',
@@ -26,3 +34,5 @@ Meeple::Application.configure do
     :domain         => ENV['SENDGRID_DOMAIN']
   }
 end
+
+Rack::Utils.key_space_limit = Integer(ENV['KEY_SPACE_LIMIT'] || 65536)
