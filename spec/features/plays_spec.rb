@@ -60,4 +60,25 @@ describe 'Plays' do
 
   end
 
+  describe 'viewing all the games played by a user' do
+
+    let(:player) { create :user }
+    let(:plays)  { player.plays }
+
+    before do
+      Timecop.scale(1000) { create_list :described_play, 10, user: player }
+      10.times { create :play, user: player, game: Game.offset(rand Game.count).limit(1).first }
+
+      Timecop.freeze
+
+      visit user_games_path player
+    end
+
+    it 'includes played games' do
+      all('.game').count.should == player.played_games.count
+    end
+
+  end
+
+
 end

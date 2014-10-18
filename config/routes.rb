@@ -8,9 +8,10 @@ Meeple::Application.routes.draw do
     resources :plays, only: %i[ new create show ], shallow: true
   end
 
-  resources :users, only: %i[ show ]
+  resources :users, only: %i[ index show ] do
+    get 'games' => 'users#games'
+  end
 
-  resources :users,       only: [:index, :show]
   resources :friendships, only: [:index, :create]
 
   root to: 'welcome#index'
