@@ -1,0 +1,20 @@
+.row.col-xs-12
+  %h1
+    = @user.display_name
+
+.row.col-xs-12
+  %h2 Recent plays
+
+.row.col-xs-12
+  %table.table.table-bordered.table-striped
+    %thead
+      %tr
+        %th Game
+        %th Played
+    %tbody
+      - for play in @user.plays.recent
+        %tr.play{ id: dom_id(play) }
+          %td= play.game.name
+          %td
+            = time_ago_in_words play.created_at
+            ago
