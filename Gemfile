@@ -58,4 +58,5 @@ group :test do
   gem 'timecop'
   gem 'validation_matcher'
   gem 'vcr'
+  gem 'webmock'
 end
