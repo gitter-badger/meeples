@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-DevFuBase::Application.load_tasks
+Meeple::Application.load_tasks

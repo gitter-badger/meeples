@@ -1,4 +1,4 @@
-DevFuBase::Application.configure do
+Meeple::Application.configure do
   config.action_controller.action_on_unpermitted_parameters = :raise
   config.action_controller.perform_caching                  = false
   config.action_dispatch.best_standards_support             = :builtin
