@@ -54,6 +54,10 @@ describe 'Plays' do
       should have_content time_ago_in_words(play.created_at)
     end
 
+    it 'includes user' do
+      should have_content play.user.display_name
+    end
+
   end
 
 end

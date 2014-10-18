@@ -6,4 +6,9 @@
       ago
 
 .row.col-xs-12
+  %h2
+    by
+    = @play.user.display_name
+
+.row.col-xs-12
   %p= sanitize @play.description

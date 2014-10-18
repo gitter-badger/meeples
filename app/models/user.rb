@@ -37,6 +37,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def display_name
+    email
+  end
+
   def locked?
     access_locked? ? true : false
   end
