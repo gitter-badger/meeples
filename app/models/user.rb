@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
       u.password_confirmation = password
     end
 
-    user.confirm!
+    user.skip_confirmation!
     user
   end
 
