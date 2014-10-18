@@ -20,6 +20,7 @@ FactoryGirl.define do
   factory :unconfirmed_user, class: User do
     sequence(:email) { |n| "user#{ n }@testing.com" }
 
+    username              { Faker::Internet.user_name }
     password              'password'
     password_confirmation 'password'
 

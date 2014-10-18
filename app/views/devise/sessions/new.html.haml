@@ -4,8 +4,8 @@
   = devise_error_messages!
 
   .form-group
-    = f.label :email, class: 'control-label'
-    = f.email_field :email, autofocus: true, class: 'form-control'
+    = f.label 'Login or Email', class: 'control-label'
+    = f.email_field :login, autofocus: true, class: 'form-control'
 
   .form-group
     = f.label :password, class: 'control-label'

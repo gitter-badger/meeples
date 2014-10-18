@@ -16,6 +16,16 @@
       - elsif devise_mapping.confirmable? && resource.pending_reconfirmation?
         Currently waiting confirmation for: #{ resource.unconfirmed_email }
 
+  - errors = resource.errors[:username]
+  .form-group{ class: errors.any? ? 'has-error' : nil }
+    = f.label :username, class: 'control-label'
+    = f.text_field :username, autofocus: true, class: 'form-control'
+    .help-block
+      - if errors.any?
+        = errors.to_sentence
+      - elsif devise_mapping.confirmable? && resource.pending_reconfirmation?
+        Currently waiting confirmation for: #{ resource.unconfirmed_email }
+
   - errors = resource.errors[:password]
   .form-group{ class: errors.any? ? 'has-error' : nil }
     = f.label :password, class: 'control-label'
