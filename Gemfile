@@ -53,6 +53,7 @@ group :test do
   gem 'codeclimate-test-reporter', require: false
   gem 'database_cleaner'
   gem 'factory_girl_rails'
+  gem 'faker'
   gem 'launchy'
   gem 'poltergeist'
   gem 'rspec-its'
