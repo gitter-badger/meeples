@@ -83,7 +83,14 @@ describe 'Plays' do
     it 'includes number of times each game was played' do
       player.played_games.map do |game|
         count = player.plays.where(game: game).count
-        within("##{ dom_id game }") { should have_content "#{ pluralize count, 'play' }" }
+        within("##{ dom_id game }") { should have_content count.to_s }
+      end
+    end
+
+    it 'includes the time since first playing each game' do
+      player.played_games.map do |game|
+        play = player.plays.where(game: game).last
+        within("##{ dom_id game }") { should have_content time_ago_in_words(play.created_at) }
       end
     end
 

@@ -10,11 +10,15 @@
     %thead
       %tr
         %th Game
-        %th Plays
+        %th.col-xs-1 Plays
+        %th.col-xs-2 First Played
 
     %tbody
       - for game in @user.played_games
+        - plays = @user.plays.where(game: game)
         %tr.game{ id: dom_id(game) }
           %td= link_to game.name, game
+          %td= plays.count
           %td
-            = pluralize @user.plays.where(game: game).count, 'play'
+            = time_ago_in_words plays.last.created_at
+            ago
