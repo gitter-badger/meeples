@@ -344,6 +344,7 @@ DEPENDENCIES
   launchy
   memcachier
   newrelic_rpm
+  nokogiri
   omniauth-facebook
   omniauth-github
   pg
