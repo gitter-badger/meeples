@@ -1,0 +1,21 @@
+- title 'Home'
+
+.jumbotron
+  %h1 Dev Fu! Base
+  %p Simple rails app
+  %p
+    = link_to 'Fork me on github', 'https://github.com/devfu/base', class: 'btn btn-danger'
+    or
+    = link_to 'https://heroku.com/deploy?template=https://github.com/devfu/base', alt: 'deploy' do
+      = image_tag('https://www.herokucdn.com/deploy/button.svg')
+
+- unless user_signed_in?
+  .row
+    .col-xs-6
+      %h2 New Users
+      = link_to 'Sign in with Facebook', user_omniauth_authorize_path(:facebook), class: 'btn btn-block btn-primary'
+      = link_to 'Sign up',               new_user_registration_path,              class: 'btn btn-block btn-default'
+
+    .col-xs-6
+      %h2 Existing users
+      = link_to 'Sign in', new_user_session_path, class: 'btn btn-block btn-success'

@@ -1,0 +1,10 @@
+.env
+.ruby-gemset
+.ruby-version
+.rvmrc
+.sass-cache/
+coverage*
+database.yml
+log/*
+Procfile.local
+tmp/*

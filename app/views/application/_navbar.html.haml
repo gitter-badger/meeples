@@ -1,0 +1,28 @@
+.navbar.navbar-default.navbar-static-top
+  .container
+    .navbar-header
+      %button.navbar-toggle{ data: { toggle: 'collapse', target: '.navbar-collapse' }, type: 'button' }
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+
+      = link_to 'Dev Fu! Base', root_path, class: 'navbar-brand'
+
+    .navbar-collapse.collapse
+
+      %ul.nav.navbar-nav.navbar-right
+        %li.divider-vertical
+          - if user_signed_in?
+            %li.dropdown
+              = link_to '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' } do
+                = current_user.email
+                %b.caret
+
+              %ul.dropdown-menu
+                %li= link_to 'admin',    admin_dashboard_path if current_user.admin?
+                %li= link_to 'account',  edit_user_registration_path
+                %li= link_to 'sign out', destroy_user_session_path, :method => :delete
+
+          - else
+            %li= link_to 'sign up', new_user_registration_path
+            %li= link_to 'sign in', new_user_session_path

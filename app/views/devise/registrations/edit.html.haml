@@ -1,0 +1,51 @@
+- title "Edit #{ resource_name.to_s.humanize }"
+
+= form_for resource, as: resource_name, url: registration_path(resource_name), html: { :method => :put } do |f|
+
+  - if resource.errors.any?
+    .alert.alert-block.alert-danger
+      Could not update your account!
+
+  - errors = resource.errors[:email]
+  .form-group{ class: errors.any? ? 'has-error' : nil }
+    = f.label :email, class: 'control-label'
+    = f.email_field :email, autofocus: true, class: 'form-control'
+    .help-block
+      - if errors.any?
+        = errors.to_sentence
+      - elsif devise_mapping.confirmable? && resource.pending_reconfirmation?
+        Currently waiting confirmation for: #{ resource.unconfirmed_email }
+
+  - errors = resource.errors[:password]
+  .form-group{ class: errors.any? ? 'has-error' : nil }
+    = f.label :password, class: 'control-label'
+    = f.password_field :password, class: 'form-control'
+    .help-block
+      - if errors.any?
+        = errors.any? ? errors.to_sentence : "(leave blank if you don't want to change it)"
+      - elsif devise_mapping.confirmable? && resource.pending_reconfirmation?
+        Currently waiting confirmation for: #{ resource.unconfirmed_email }
+
+  - errors = resource.errors[:password]
+  .form-group
+    = f.label :password_confirmation, class: 'control-label'
+    = f.password_field :password_confirmation, class: 'form-control'
+    .help-block
+      - if errors.any?
+        = errors.to_sentence
+      - else
+        (leave blank if you don't want to change it)
+
+  - errors = resource.errors[:current_password]
+  .form-group{ class: errors.any? ? 'has-error' : nil }
+    = f.label :current_password, class: 'control-label'
+    = f.password_field :current_password, class: 'form-control'
+    .help-block
+      - if errors.any?
+        = errors.to_sentence
+      - else
+        (we need your current password to confirm your changes)
+
+    %p= f.submit 'Update my account', class: 'btn btn-block btn-lg btn-primary'
+    %p= link_to 'Cancel my account', registration_path(resource_name), class: 'btn btn-block btn-danger btn-lg', data: { confirm: 'Are you sure?' }, :method => :delete
+    %p= link_to 'Back', :back, class: 'btn btn-block btn-default btn-lg'

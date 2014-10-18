@@ -1,0 +1,11 @@
+- title 'Resend unlock instructions'
+
+= form_for resource, as: resource_name, url: unlock_path(resource_name), :method => :post do |f|
+
+  - errors = resource.errors[:email]
+  .form-group{ class: errors.any? ? 'has-error' : nil }
+    = f.label :email, class: 'control-label'
+    = f.email_field :email, autofocus: true, class: 'form-control'
+.help-block= errors.to_sentence if errors.any?
+  .form-group
+    = f.submit 'Resend unlock instructions', class: 'btn btn-block btn-lg btn-primary'

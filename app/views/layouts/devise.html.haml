@@ -1,0 +1,31 @@
+!!!
+%html
+
+  %head
+    %meta{ content: 'text/html;charset=UTF-8', 'http-equiv' => 'content-type' }
+    %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1.0' }
+
+    = csrf_meta_tag
+    = stylesheet_link_tag    'application'
+    = javascript_include_tag 'application'
+
+    %title
+      Dev Fu! Base
+      = yield :title
+
+  %body{ data: { environment: Rails.env }}
+    = render 'navbar'
+
+    .container
+      .col-sm-4.col-sm-offset-4.col-md-4.col-md-offset-4
+        .page-header
+          %h1= yield :h1
+
+        .row.flash
+          - flash.each do |type, message|
+            .alert{ class: "alert-#{ type }" }
+              %button.close{ data: { dismiss: 'alert' }} ×
+              = message
+
+        = yield
+        = render 'devise/shared/links' unless user_signed_in?

@@ -1,0 +1,26 @@
+defaults: &defaults
+  # postgres
+  adapter:      postgresql
+  host:         localhost
+  min_messages: warning
+  password:
+  username:     root
+
+  # mysql
+  # adapter:  mysql2
+  # username: root
+  # password:
+  # socket:   /tmp/mysql.sock
+
+  # sqlite
+  # adapter: sqlite3
+  # pool:    5
+  # timeout: 5000
+
+development:
+  <<: *defaults
+  database: base_dev
+
+test:
+  <<: *defaults
+  database: base_test<%= ENV['TEST_ENV_NUMBER'] %>

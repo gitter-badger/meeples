@@ -1,0 +1,27 @@
+@import "bootstrap-sprockets"
+@import "bootstrap"
+
+body
+
+  padding-bottom: 20px
+
+  &[data-environment='test']
+    .navbar-static-top
+      border-bottom: 8px solid #e70031
+
+  &[data-environment='development']
+    .navbar-static-top
+      border-bottom: 8px solid #2153e7
+
+  &[data-environment='staging']
+    .navbar-static-top
+      border-bottom: 8px solid #ffd818
+
+  &[data-environment='production']
+    .navbar-static-top
+      border-bottom: none
+
+form
+
+  input[type='checkbox'] + label, input[type='radio'] + label
+    :display inline
