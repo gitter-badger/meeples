@@ -12,15 +12,17 @@ class User < ActiveRecord::Base
 
   devise :omniauthable, omniauth_providers: %i[ facebook github ]
 
-  has_many :plays, -> { order 'created_at desc' }
+  has_many :friends,      :through => :friendships
   has_many :friendships
-  has_many :friends, :through => :friendships
+  has_many :games,                                       :through => :plays
+  has_many :played_games, -> { uniq }, :source => :game, :through => :plays
+  has_many :plays,        -> { order 'created_at desc' }
 
   validates :username, presence: true, uniqueness: { case_sensitive: false }
 
-  scope :admin,           ->{ where admin: true }
   scope :access_locked,   ->{ where 'locked_at IS NOT NULL AND locked_at >= ?', unlock_in.ago }
   scope :access_unlocked, ->{ where 'locked_at IS NULL OR locked_at < ?',       unlock_in.ago }
+  scope :admin,           ->{ where admin: true }
 
   attr_accessor :login
 
