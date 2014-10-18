@@ -18,16 +18,6 @@ describe 'Games' do
         click_button 'search'
       end
 
-      it 'should include the name' do
-        click_button 'search'
-        should have_content 'Glory to Rome'
-      end
-
-      it 'should include the year published' do
-        click_button 'search'
-        should have_content '2005'
-      end
-
     end
 
     context 'game already exists in database' do
@@ -44,17 +34,50 @@ describe 'Games' do
         Game.should_not_receive :search_bgg!
       end
 
-      it 'should include the name' do
-        click_button 'search'
-        should have_content 'Glory to Rome'
-      end
-
-      it 'should include the year published' do
-        click_button 'search'
-        should have_content '2005'
-      end
-
     end
+
+  end
+
+  describe 'listing' do
+
+    let!(:games) { create_list :published_game, 3 }
+
+    before do
+      visit games_path
+    end
+
+    it 'includes the name of each game' do
+      games.each { |g| should have_content g.name }
+    end
+
+    it 'includes the year published for each game' do
+      games.each { |g| should have_content g.year_published }
+    end
+
+    it 'includes link  to each game' do
+      games.each { |g| should have_css "a[href='#{ game_path g }']" }
+    end
+
+  end
+
+  describe 'viewing', :vcr do
+
+    let(:game) { Game.lookup('munchkin fu 2').first }
+
+    before do
+      Game.search_bgg! 'munchkin fu 2'
+      visit game_path game
+    end
+
+    it 'includes the name' do
+      should have_content game.name
+    end
+
+    it 'includes the year published' do
+      should have_content game.year_published
+    end
+
+    it { should have_css "a[href='#{ games_path }']"}
 
   end
 
