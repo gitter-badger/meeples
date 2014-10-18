@@ -5,3 +5,7 @@
 
 .row.col-xs-12
   = link_to 'back', games_path
+
+.row.col-xs-12
+  %h2 Record a play
+  %p= link_to 'play', [:new, @game, :play]

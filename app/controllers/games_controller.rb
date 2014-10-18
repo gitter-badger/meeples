@@ -1,6 +1,6 @@
-class GamesController < InheritedResources::Base
+class GamesController < ApplicationController
 
-  respond_to :html
+  load_resource :game
 
   def index
     @games = if params[:search]
@@ -11,6 +11,10 @@ class GamesController < InheritedResources::Base
 
     params[:search] ||= {}
     respond_with @games
+  end
+
+  def show
+    respond_with @game
   end
 
 end

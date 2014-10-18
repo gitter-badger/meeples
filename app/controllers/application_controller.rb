@@ -2,10 +2,12 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery
 
+  respond_to :html
+
   self.responder = Responder
 
   rescue_from CanCan::AccessDenied do |exception|
-    access_denied!
+    access_denied! exception
   end
 
   def after_sign_in_path_for resource
