@@ -37,6 +37,10 @@ describe 'My Recent Plays' do
     plays.map { |p| should have_css "a[href='#{ game_path p.game }']"}
   end
 
+  it 'links to the play' do
+    plays.map { |p| should have_css "a[href='#{ play_path p }']" }
+  end
+
   after do
     Timecop.return
   end

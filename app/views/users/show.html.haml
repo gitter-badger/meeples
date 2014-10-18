@@ -16,5 +16,6 @@
         %tr.play{ id: dom_id(play) }
           %td= link_to play.game.name, play.game
           %td
-            = time_ago_in_words play.created_at
-            ago
+            = link_to play do
+              = time_ago_in_words play.created_at
+              ago
