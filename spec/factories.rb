@@ -1,5 +1,13 @@
 FactoryGirl.define do
 
+  factory :game do
+    name { Faker::Company.name }
+
+    factory :published_game do
+      year_published 2014
+    end
+  end
+
   factory :unconfirmed_user, class: User do
     sequence(:email) { |n| "user#{ n }@testing.com" }
 
