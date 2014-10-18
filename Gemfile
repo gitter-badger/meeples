@@ -6,7 +6,7 @@ gem 'rails'
 
 gem 'activeadmin',    github: 'gregbell/active_admin'
 gem 'bootstrap-sass'
-gem 'cancan'
+gem 'cancancan'
 gem 'devise'
 gem 'haml-rails'
 gem 'hirb'
