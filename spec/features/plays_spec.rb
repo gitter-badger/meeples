@@ -94,6 +94,13 @@ describe 'Plays' do
       end
     end
 
+    it 'includes the time since last playing each game' do
+      player.played_games.map do |game|
+        play = player.plays.where(game: game).first
+        within("##{ dom_id game }") { should have_content time_ago_in_words(play.created_at) }
+      end
+    end
+
   end
 
 

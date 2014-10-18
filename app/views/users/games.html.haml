@@ -12,6 +12,7 @@
         %th Game
         %th.col-xs-1 Plays
         %th.col-xs-2 First Played
+        %th.col-xs-2 Last Played
 
     %tbody
       - for game in @user.played_games
@@ -21,4 +22,7 @@
           %td= plays.count
           %td
             = time_ago_in_words plays.last.created_at
+            ago
+          %td
+            = time_ago_in_words plays.first.created_at
             ago
