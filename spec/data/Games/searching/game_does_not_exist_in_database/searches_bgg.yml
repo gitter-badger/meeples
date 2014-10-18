@@ -1,0 +1,50 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://www.boardgamegeek.com/xmlapi/search?search=glory%20to%20rome
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx/1.0.15
+      Date:
+      - Sat, 18 Oct 2014 07:36:18 GMT
+      Content-Type:
+      - text/xml; charset="UTF-8"
+      Connection:
+      - keep-alive
+      X-Powered-By:
+      - PHP/5.5.17
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Pragma:
+      - no-cache
+      Vary:
+      - Accept-Encoding,User-Agent
+      Content-Length:
+      - '214'
+      Set-Cookie:
+      - Coyote-2-48e91082=48e910a7:3; path=/
+    body:
+      encoding: UTF-8
+      string: "<boardgames termsofuse=\"http://boardgamegeek.com/xmlapi/termsofuse\">\n\t\t\t<boardgame
+        objectid=\"19857\">\n\t\t\t<name primary=\"true\">Glory to Rome</name>\t\t\t\n\t\t\t\t\t\t\t<yearpublished>2005</yearpublished>\n\t\t\t\t\t</boardgame>\n\t\t\t<boardgame
+        objectid=\"107998\">\n\t\t\t<name primary=\"true\">Glory to Rome Promo Cards</name>\t\t\t\n\t\t\t\t\t\t\t<yearpublished>2011</yearpublished>\n\t\t\t\t\t</boardgame>\n\t\t\t<boardgame
+        objectid=\"121766\">\n\t\t\t<name primary=\"true\">Glory to Rome: Republic
+        Expansion</name>\t\t\t\n\t\t\t\t\t\t\t<yearpublished>2012</yearpublished>\n\t\t\t\t\t</boardgame>\n\t</boardgames>\n"
+    http_version: 
+  recorded_at: Sat, 18 Oct 2014 07:36:17 GMT
+recorded_with: VCR 2.9.3

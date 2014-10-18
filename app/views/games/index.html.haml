@@ -1,0 +1,22 @@
+%row.col-lg-12
+  %h1 Listing games
+
+%row.col-lg-12
+  %p
+    = form_for :search, method: 'get', url: games_path do |f|
+      .input-group
+        = f.text_field :game_name, autofocus: true, class: 'form-control', value: params[:search][:game_name]
+
+        .input-group-btn
+          = f.submit :search, class: 'btn'
+
+%row.col-lg-12
+  %table.table.table-bordered.table-striped
+    %tr
+      %th Name
+      %th Year published
+
+    - @games.each do |game|
+      %tr
+        %td= game.name
+        %td= game.year_published

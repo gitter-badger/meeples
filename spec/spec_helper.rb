@@ -23,6 +23,8 @@ RSpec.configure do |config|
   config.treat_symbols_as_metadata_keys_with_true_values = true
   config.use_transactional_fixtures                      = false
 
+  config.include FactoryGirl::Syntax::Methods
+
   config.before :suite do
     DatabaseCleaner.strategy = :truncation#, { except: %w[ roles ]}
   end
