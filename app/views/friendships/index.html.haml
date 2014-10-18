@@ -9,4 +9,4 @@
     %tbody
       - @friends.each do |friend|
         %tr
-          %td= friend.email
+          %td= link_to friend.email, user_path(friend)

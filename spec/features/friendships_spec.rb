@@ -12,13 +12,13 @@ describe 'Friendships' do
     before do
       login_as user
 
-      friend_a = FactoryGirl.create :user, email: 'friend_a@example.com'
-      friend_b = FactoryGirl.create :user, email: 'friend_b@example.com'
+      @friend_a = FactoryGirl.create :user, email: 'friend_a@example.com'
+      @friend_b = FactoryGirl.create :user, email: 'friend_b@example.com'
 
-      non_friend = FactoryGirl.create :user, email: 'non_friend@example.com'
+      @non_friend = FactoryGirl.create :user, email: 'non_friend@example.com'
 
-      FactoryGirl.create :friendship, user: user, friend: friend_a
-      FactoryGirl.create :friendship, user: user, friend: friend_b
+      FactoryGirl.create :friendship, user: user, friend: @friend_a
+      FactoryGirl.create :friendship, user: user, friend: @friend_b
     end
 
     it 'should have a link to view friends' do
@@ -32,6 +32,12 @@ describe 'Friendships' do
       should have_content 'friend_b@example.com'
 
       should_not have_content 'non_friend@example.com'
+    end
+
+    it 'should have a link to view friend' do
+      visit friendships_path
+
+      should have_css("a[href='#{ user_path(@friend_a) }']")
     end
 
   end
