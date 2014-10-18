@@ -36,6 +36,8 @@ describe 'Navbar' do
       should_not have_css(".navbar a[href='#{ admin_dashboard_path }']")
     end
 
+    it { should have_css "a[href='#{ user_path user }']" }
+
   end
 
   context 'as an admin' do
