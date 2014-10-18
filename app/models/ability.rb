@@ -2,14 +2,18 @@ class Ability
   include CanCan::Ability
 
   def initialize user
-    user ||= User.new
+    if user
+      can :manage, :all if user.admin?
 
-    if user.admin?
-      can :manage, :all
+      can :manage, Play, user_id: user.id
+
+      cannot :destroy, User, id: user.id
+      cannot :lock,    User, id: user.id
+      cannot :unlock,  User, id: user.id
     end
 
-    cannot :destroy, User, id: user.id
-    cannot :lock,    User, id: user.id
-    cannot :unlock,  User, id: user.id
+    can :read, Game
+    can :read, Play
   end
+
 end

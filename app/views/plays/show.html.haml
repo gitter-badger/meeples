@@ -1,0 +1,14 @@
+.row.col-xs-12
+  %h1
+    = @play.game.name
+    %small
+      = time_ago_in_words @play.created_at
+      ago
+
+.row.col-xs-12
+  %h2
+    by
+    = @play.user.display_name
+
+.row.col-xs-12
+  %p= sanitize @play.description

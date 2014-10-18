@@ -79,6 +79,17 @@ describe 'Games' do
 
     it { should have_css "a[href='#{ games_path }']"}
 
+    context 'when logged in' do
+
+      before do
+        login_as create :user
+        visit game_path game
+      end
+
+      it { should have_css "a[href='#{ new_game_play_path game }']"}
+
+    end
+
   end
 
 end

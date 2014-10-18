@@ -8,6 +8,15 @@ FactoryGirl.define do
     end
   end
 
+  factory :play do
+    game
+    user
+
+    factory :described_play do
+      description { Faker::Company.bs }
+    end
+  end
+
   factory :unconfirmed_user, class: User do
     sequence(:email) { |n| "user#{ n }@testing.com" }
 

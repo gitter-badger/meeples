@@ -3,6 +3,8 @@ class Game < ActiveRecord::Base
   require 'open-uri'
   require 'nokogiri'
 
+  has_many :plays
+
   validates :name, presence: true
 
   scope :lookup, ->(n){ where 'lower(name) like ?', "%#{ n }%" }
