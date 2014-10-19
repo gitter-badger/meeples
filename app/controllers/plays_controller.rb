@@ -1,11 +1,15 @@
 class PlaysController < ApplicationController
 
-  before_filter :authenticate_user!, except: %i[ show ]
+  before_filter :authenticate_user!, except: %i[ index show ]
 
   load_and_authorize_resource :game
   load_and_authorize_resource :play, shallow: true, :through => :game
 
   autocomplete :user, :usernames, full: true, :column_name => :username, extra_data: %i[ id ]
+
+  def index
+    @plays = Play.order('created_at desc').page params[:page]
+  end
 
   def new
     respond_with @game
