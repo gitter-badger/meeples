@@ -26,15 +26,18 @@ class Game < ActiveRecord::Base
 private
 
   def self.search_bgg! query
-    url = "http://www.boardgamegeek.com/xmlapi/search?search=#{ URI.encode query }"
+    url = "http://www.boardgamegeek.com/xmlapi2/search?query=#{ URI.encode query }"
     doc = Nokogiri::HTML open(url), nil, 'utf-8'
 
-    doc.xpath('//boardgame').map do |boardgame|
-      id   = boardgame['objectid']
-      name = boardgame.css('name').inner_text
-      year = boardgame.css('yearpublished').inner_text
+    doc.xpath('//item').map do |item|
+      id   = item['id']
+      type = item['type']
+      name = item.css('name').attribute('value').value
+      year = item.css('yearpublished').attribute('value').value unless item.css('yearpublished').blank?
 
-      where(bgg_id: id, name: name, year_published: year).first_or_create
+      game = where(bgg_id: id, name: name, year_published: year).first_or_initialize
+      game.bgg_type = type
+      game.save if game.changed?
     end
   end
 
