@@ -14,6 +14,10 @@ Meeple::Application.routes.draw do
     get 'games' => 'users#games'
   end
 
+  resources :plays, only: [] do
+    resources :comments, only: [:create]
+  end
+
   resources :friendships, only: [:index, :create]
 
   root to: 'welcome#index'

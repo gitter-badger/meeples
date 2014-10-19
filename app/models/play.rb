@@ -5,6 +5,8 @@ class Play < ActiveRecord::Base
   has_many :game_players
   has_many :players, :through => :game_players, class: User
 
+  has_many :comments
+
   validates :game, presence: true
   validates :user, presence: true
 

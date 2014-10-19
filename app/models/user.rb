@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   has_many :friendships
   has_many :games,                                       :through => :plays
   has_many :plays,        -> { order 'plays.created_at desc' }
+  has_many :comments, :as => 'Author'
 
   validates :username, presence: true, uniqueness: { case_sensitive: false }
 

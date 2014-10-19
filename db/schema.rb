@@ -31,6 +31,14 @@ ActiveRecord::Schema.define(version: 20141019024537) do
   add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
   add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
 
+  create_table "comments", force: true do |t|
+    t.integer  "play_id"
+    t.integer  "author_id"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "friendships", force: true do |t|
     t.integer  "user_id"
     t.integer  "friend_id"
