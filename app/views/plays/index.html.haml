@@ -5,16 +5,16 @@
   %table.table.table-bordered.table-striped.plays
     %thead
       %tr
+        %th Game
         %th Username
-        %th.col-sm-6 Check in
         %th.col-sm-1 Players
         %th.col-sm-2 Played
 
     %tbody
       - for play in @plays
         %tr.play{ id: dom_id(play) }
+          %td= link_to play.game.name,     play.game
           %td= link_to play.user.username, play.user
-          %td= play.description
           %td= play.players.count
           %td
             = link_to play do

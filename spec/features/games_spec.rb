@@ -127,6 +127,11 @@ describe 'Games' do
         plays.map { |p| within("##{ dom_id p }") { should have_content time_ago_in_words(p.created_at) } }
       end
 
+      it 'it sorts plays reverse cronologically' do
+        names = Play.where(game_id: game.id).order('created_at desc').map { |p| p.user.username }
+        text.should =~ /#{ names.join '.+' }/m
+      end
+
     end
 
   end

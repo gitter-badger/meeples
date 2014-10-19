@@ -8,7 +8,7 @@ class PlaysController < ApplicationController
   autocomplete :user, :usernames, full: true, :column_name => :username, extra_data: %i[ id ]
 
   def index
-    @plays = Play.page params[:page]
+    @plays = Play.order('created_at desc').page params[:page]
   end
 
   def new

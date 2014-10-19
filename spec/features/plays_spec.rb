@@ -146,14 +146,12 @@ describe 'Plays' do
 
   describe 'viewing all plays' do
 
-    let!(:plays) { Play.all.limit 15 }
+    let(:plays) { Play.limit 15 }
 
     before do
-      create_list :play, 25, with_players: 2
+      Timecop.scale(-50000) { create_list :play, 3, with_players: 2 }
       visit plays_path
     end
-
-    it { should have_css '.plays' }
 
     it 'includes username for all plays' do
       plays.map { |p| within("##{ dom_id p }") { should have_content p.user.username } }
@@ -165,6 +163,11 @@ describe 'Plays' do
 
     it 'includes times for all plays' do
       plays.map { |p| within("##{ dom_id p }") { should have_content time_ago_in_words(p.created_at) } }
+    end
+
+    it 'it sorts plays reverse cronologically' do
+      names = Play.order('created_at desc').map { |p| p.game.name }
+      text.should =~ /#{ names.join '.+' }/m
     end
 
   end
