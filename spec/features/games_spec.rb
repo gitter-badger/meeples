@@ -57,8 +57,23 @@ describe 'Games' do
       games.each { |g| should have_content g.year_published }
     end
 
-    it 'includes link  to each game' do
+    it 'includes link to each game' do
       games.each { |g| should have_css "a[href='#{ game_path g }']" }
+    end
+
+    context 'that have been played' do
+
+      let(:game) { games.first }
+
+      before do
+        create_list :play, 10, game: game
+        visit games_path
+      end
+
+      it 'includes the number of plays' do
+        within("##{ dom_id game }"){ should have_content "#{ game.plays.count }" }
+      end
+
     end
 
   end
