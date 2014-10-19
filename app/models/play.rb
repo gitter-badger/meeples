@@ -14,4 +14,12 @@ class Play < ActiveRecord::Base
 
   attr_accessor :user_usernames
 
+  def self.unique_users
+    select('distinct user_id').count
+  end
+
+  def self.unique_games
+    select('distinct game_id').count
+  end
+
 end
