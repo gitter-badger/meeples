@@ -16,9 +16,9 @@
   %table.table.table-bordered.table-striped
     %tr
       %th Name
-      %th Year
-      %th Plays
-      %th Rating
+      %th.col-sm-1 Year
+      %th.col-sm-1 Plays
+      %th.col-sm-1 Rating
 
     - for game in @games
       %tr{ id: dom_id(game) }
