@@ -1,18 +1,26 @@
 .row.col-sm-12
   %h1
+    = link_to games_path, class: 'btn btn-lg' do
+      %span.glyphicon.glyphicon-chevron-left
+
     = @game.name
     %small= @game.year_published
 
 .row.col-sm-12
   %p
-    %small= link_to "#{@game.name} on StackExchange", @game.stack_exchange_link, target: '_blank'
+    %small
+      View
+      = link_to @game.name, @game.stack_exchange_link, target: '_blank'
+      questions on
+      = link_to 'StackExchange', 'http://boardgames.stackexchange.com', target: '_blank'
 
 .row.col-xs-12
-  %h2
-    %small
-      = link_to 'Record your game play', [:new, @game, :play], class: 'btn btn-success'
+  %p= link_to 'Record your game play', [:new, @game, :play], class: 'btn btn-success'
 
 - if @plays.any?
+  .row.col-sm-12
+    %h2 Everyone's Plays
+
   .row.col-sm-12
     %table.table.table-bordered.table-striped.plays
       %thead
@@ -35,9 +43,3 @@
 
   .row.col-sm-12
     .text-center= paginate @plays
-
-.row.col-sm-12
-  %p
-    = link_to games_path, class: 'btn btn-xs' do
-      %span.glyphicon.glyphicon-chevron-left
-      back to games
