@@ -1,4 +1,4 @@
-.row-fluid
+.row.col-xs-12
   %table.table.table-striped.table-bordered
 
     %thead
@@ -19,3 +19,6 @@
           %td
             - unless current_user == user || current_user.friends.include?(user)
               = link_to 'Add Friend', friendships_path(friend_id: user), :method => :post
+
+.row.col-xs-12
+  .text-center= paginate @users

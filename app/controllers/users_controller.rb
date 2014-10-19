@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  load_resource :user, except: %i[ games ]
+  load_resource :user, except: %i[ index games ]
 
   def games
     @user = User.find params[:user_id]
@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
+    @users = User.page params[:page]
 
     respond_with @users
   end
