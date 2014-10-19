@@ -22,6 +22,7 @@ class User < ActiveRecord::Base
   scope :access_locked,   ->{ where 'locked_at IS NOT NULL AND locked_at >= ?', unlock_in.ago }
   scope :access_unlocked, ->{ where 'locked_at IS NULL OR locked_at < ?',       unlock_in.ago }
   scope :admin,           ->{ where admin: true }
+  scope :all_by_username, ->(names){ where('username in (?)', names) }
 
   attr_accessor :login
 
