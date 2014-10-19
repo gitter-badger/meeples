@@ -40,4 +40,4 @@
 .row.col-sm-12
   = simple_form_for [@play, @comment] do |f|
     = f.input :body, label: 'Add a new comment'
-    = f.submit 'Post comment'
+    = f.submit 'Post comment', class: 'btn btn-primary'

@@ -36,6 +36,13 @@ class Game < ActiveRecord::Base
     "#{BGG_BASE_URL}/#{bgg_type}/#{bgg_id}/#{URI.encode name}"
   end
 
+  def avg_rating
+    ratings = plays.pluck(:rating)
+    total = ratings.map(&:to_i).reduce(:+)
+    return 0.0 unless total
+    (total / ratings.size.to_f).round(1)
+  end
+
   def stack_exchange_link
     "http://boardgames.stackexchange.com/search?q=#{name}"
   end
