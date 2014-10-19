@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
     info = auth.info
     email = info.email
 
-    user = where(provider: auth.provider, uid: auth.uid).first_or_create do |u|
+    user = where(provider: auth.provider, uid: auth.uid).first_or_initialize do |u|
       u.username              = info.nickname.blank? ? email : info.nickname
       u.email                 = email.blank? ? "#{u.username}@meepl.es" : email
       u.password              = password
@@ -53,6 +53,7 @@ class User < ActiveRecord::Base
     end
 
     user.skip_confirmation!
+    user.save
     user
   end
 
