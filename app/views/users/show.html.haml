@@ -1,17 +1,17 @@
-.row.col-xs-12
+.row.col-sm-12
   %h1
     = @user.username
 
-.row.col-xs-12
+.row.col-sm-12
   %h2 Recent plays
 
-.row.col-xs-12
+.row.col-sm-12
   %table.table.table-bordered.table-striped
     %thead
       %tr
         %th Game
-        %th.col-xs-6 Check in
-        %th.col-xs-2 Played
+        %th.col-sm-6 Check in
+        %th.col-sm-2 Played
 
     %tbody
       - for play in @user.plays.recent

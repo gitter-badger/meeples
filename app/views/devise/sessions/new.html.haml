@@ -1,21 +1,22 @@
 - title 'Sign in'
 
-= form_for resource, as: resource_name, url: session_path(resource_name) do |f|
-  = devise_error_messages!
+.row.col-sm-12.col-md-12.col-lg-12
+  = form_for resource, as: resource_name, url: session_path(resource_name) do |f|
+    = devise_error_messages!
 
-  .form-group
-    = f.label 'Login or Email', class: 'control-label'
-    = f.email_field :login, autofocus: true, class: 'form-control'
+    .form-group
+      = f.label 'Login or Email', class: 'control-label'
+      = f.email_field :login, autofocus: true, class: 'form-control'
 
-  .form-group
-    = f.label :password, class: 'control-label'
-    = f.password_field :password, class: 'form-control'
+    .form-group
+      = f.label :password, class: 'control-label'
+      = f.password_field :password, class: 'form-control'
 
-  - if devise_mapping.rememberable?
-    .checkbox
-      = f.label :remember_me do
-        = f.check_box :remember_me
-        Remember Me
+    - if devise_mapping.rememberable?
+      .checkbox
+        = f.label :remember_me do
+          = f.check_box :remember_me
+          Remember Me
 
-  .form-group
-    = f.submit 'Sign in', class: 'btn btn-block btn-lg btn-success'
+    .form-group
+      = f.submit 'Sign in', class: 'btn btn-block btn-lg btn-success'

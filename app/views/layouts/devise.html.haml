@@ -19,12 +19,13 @@
     = render 'navbar'
 
     .container
-      .col-sm-4.col-sm-offset-4.col-md-4.col-md-offset-4
-        .page-header
-          %h1= yield :h1
+      .col-sm-8.col-sm-offset-2
+        .row.col-sm-12
+          .page-header
+            %h1= yield :h1
 
-        .row.flash
-          - flash.each do |type, message|
+        - flash.each do |type, message|
+          .row.col-sm-12.flash
             .alert{ class: "alert-#{ type }" }
               %button.close{ data: { dismiss: 'alert' }} ×
               = message

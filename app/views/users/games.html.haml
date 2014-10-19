@@ -1,18 +1,18 @@
-.row.col-xs-12
+.row.col-sm-12
   %h1
     = @user.username
 
-.row.col-xs-12
+.row.col-sm-12
   %h2 All plays
 
-.row.col-xs-12
+.row.col-sm-12
   %table.table.table-bordered.table-striped
     %thead
       %tr
         %th Game
-        %th.col-xs-1 Plays
-        %th.col-xs-2 First Played
-        %th.col-xs-2 Last Played
+        %th.col-sm-1 Plays
+        %th.col-sm-2 First Played
+        %th.col-sm-2 Last Played
 
     %tbody
       - for game in @played_games
@@ -27,5 +27,5 @@
             = time_ago_in_words plays.first.created_at
             ago
 
-.row.col-xs-12
+.row.col-sm-12
   .text-center= paginate @played_games
