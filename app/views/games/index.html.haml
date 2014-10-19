@@ -8,13 +8,15 @@
         = f.text_field :game_name, autofocus: true, class: 'form-control', value: params[:search][:game_name]
 
         .input-group-btn
-          = f.submit :search, class: 'btn'
+          = f.submit :search, class: 'btn btn-warning'
+          - if params[:search].any?
+            = link_to 'view all', [:games], class: 'btn btn-primary'
 
 %row.col-lg-12
   %table.table.table-bordered.table-striped
     %tr
       %th Name
-      %th Year published
+      %th Year
 
     - for game in @games
       %tr{ id: dom_id(game) }

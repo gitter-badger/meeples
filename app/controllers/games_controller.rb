@@ -6,7 +6,7 @@ class GamesController < ApplicationController
     params[:search] ||= {}
 
     @games = Game.search_by_name params[:search][:game_name] if params[:search][:game_name]
-    @games = @games.page params[:page]
+    @games = @games.order('name, year_published').page params[:page]
 
     respond_with @games
   end
