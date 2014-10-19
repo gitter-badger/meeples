@@ -8,10 +8,11 @@
 .row.col-sm-12
   %p
     %small
-      View
-      = link_to @game.name, @game.stack_exchange_link, target: '_blank'
-      questions on
-      = link_to 'StackExchange', 'http://boardgames.stackexchange.com', target: '_blank'
+      View on
+      = link_to 'StackExchange', @game.stack_exchange_link, target: '_blank'
+      - if @game.bgg_type
+        |
+        = link_to 'BoardGameGeek', @game.bgg_link, target: '_blank'
 
 .row.col-xs-12
   %p= link_to 'Record your game play', [:new, @game, :play], class: 'btn btn-success'
