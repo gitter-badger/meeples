@@ -77,7 +77,7 @@ describe 'Plays' do
     end
 
     it 'includes played games' do
-      all('.game').count.should == player.played_games.count
+      all('.game').count.should == player.games.uniq.count
     end
 
     it 'includes number of times each game was played' do
@@ -99,6 +99,11 @@ describe 'Plays' do
         play = player.plays.where(game: game).first
         within("##{ dom_id game }") { should have_content time_ago_in_words(play.created_at) }
       end
+    end
+
+    it 'sorts games reverse cronologically by play date' do
+      names = player.played_games.map &:name
+      text.should =~ /#{ names.join '.+' }/m
     end
 
   end

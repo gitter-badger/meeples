@@ -9,6 +9,14 @@ class Game < ActiveRecord::Base
 
   scope :lookup, ->(n){ where 'lower(name) like ?', "%#{ n }%" }
 
+  def self.played_by user_id
+    group('games.id').
+    joins(:plays).
+    order('last_played_at desc').
+    select("DISTINCT on (games.id, last_played_at) games.*, count(plays.id) as play_count, min(plays.created_at) as first_played_at, max(plays.created_at) as last_played_at").
+    where('plays.user_id = ?', user_id)
+  end
+
   def self.search_by_name game_name
     games = lookup game_name
     games = search_bgg! game_name unless games.any?
