@@ -19,7 +19,7 @@
         = link_to 'BoardGameGeek', @game.bgg_link, target: '_blank'
 
 .row.col-xs-12
-  %p= link_to 'Record your game play', [:new, @game, :play], class: 'btn btn-success'
+  %p= link_to "I'm playing this", [:new, @game, :play], class: 'btn btn-success'
 
 - if @plays.any?
   .row.col-sm-12
@@ -53,3 +53,19 @@
 
   .row.col-sm-12
     .text-center= paginate @plays
+
+- if current_user and current_user.recently_viewed
+  %h2 Recently Viewed
+  .row
+    - for recent in current_user.recently_viewed
+      - game = Game.find_by_id recent['game_id']
+      .col-xs-3.col-md-2
+        .thumbnail
+          .caption
+            %h5= recent['game_name']
+            %p= pluralize game.plays.count, 'play'
+            %p
+              = game.avg_rating
+              avg rating
+            %p
+              = link_to 'view', game_path(recent['game_id']), class: 'btn-sm btn-info'

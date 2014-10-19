@@ -13,7 +13,11 @@ class GamesController < ApplicationController
 
   def show
     @plays = @game.plays.page params[:page]
+    current_user.add_recently_viewed @game if current_user
     respond_with @game
+  end
+
+  def recently_viewed
   end
 
 end
