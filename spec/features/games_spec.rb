@@ -132,6 +132,21 @@ describe 'Games' do
         text.should =~ /#{ names.join '.+' }/m
       end
 
+      describe 'recently viewed' do
+
+        let(:other_game) { create :game }
+
+        before do
+          visit game_path other_game
+        end
+
+        it 'shows previously viewed game name' do
+          should have_css "a[href='#{ game_path game}']"
+          should have_content game.name
+        end
+
+      end
+
     end
 
   end
