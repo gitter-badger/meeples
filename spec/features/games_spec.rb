@@ -69,6 +69,9 @@ describe 'Games' do
       visit game_path game
     end
 
+    it { should have_css "a[href='#{ games_path }']"}
+    it { should have_css "a[href='#{ new_game_play_path game }']"}
+
     it 'includes the name' do
       should have_content game.name
     end
@@ -77,21 +80,8 @@ describe 'Games' do
       should have_content game.year_published
     end
 
-    it { should have_css "a[href='#{ games_path }']"}
-
     it 'includes link to stack exchange' do
       should have_css "a[href='#{game.stack_exchange_link}']"
-    end
-
-    context 'when logged in' do
-
-      before do
-        login_as create :user
-        visit game_path game
-      end
-
-      it { should have_css "a[href='#{ new_game_play_path game }']"}
-
     end
 
   end
