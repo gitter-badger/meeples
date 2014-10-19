@@ -220,9 +220,13 @@ describe 'Users' do
   describe 'listing users' do
 
     let(:users) { User.all }
+    let(:games) { create_list :game, 2 }
 
     before do
       create_list :user, 2
+      users.each { |u| create_list :play, 2, user: u, game: games.first }
+      users.each { |u| create      :play,    user: u, game: games.last }
+
       login_as user
       visit users_path
     end
@@ -233,6 +237,10 @@ describe 'Users' do
 
     it 'includes the total number of plays for each user' do
       users.map { |u| should have_content "#{ u.plays.count }" }
+    end
+
+    it 'includes the number unique of plays for each user' do
+      users.map { |u| should have_content "#{ u.games.uniq.count }" }
     end
 
     it 'links to the user profile' do

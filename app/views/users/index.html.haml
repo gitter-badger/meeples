@@ -5,6 +5,7 @@
       %tr
         %th Username
         %th Total plays
+        %th Unique games
         %th
 
     %tbody
@@ -12,6 +13,7 @@
         %tr
           %td= user.username
           %td= link_to user.plays.count, user
+          %td= user.games.uniq.count
           %td
             - unless current_user == user || current_user.friends.include?(user)
               = link_to 'Add Friend', friendships_path(friend_id: user), :method => :post
