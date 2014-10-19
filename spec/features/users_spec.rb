@@ -265,17 +265,17 @@ describe 'Users' do
       within("##{ dom_id user }") { should_not have_css "a[href='#{ friendships_path friend_id: user }']" }
     end
 
-    context 'existing usernames should not be blank' do
+    context 'username is blank' do
+
+      let(:invalid) { create :user }
 
       before do
-        @invalid_user = FactoryGirl.create :user
-        @invalid_user.update_attribute :username, nil
-
+        invalid.update_attribute :username, nil
         visit users_path
       end
 
-      it 'displays the email for users that do not have a username' do
-        should have_content @invalid_user.email
+      it 'displays the email instead' do
+        should have_content invalid.email
       end
 
     end
