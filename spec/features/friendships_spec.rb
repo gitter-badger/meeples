@@ -30,9 +30,9 @@ describe 'Friendships' do
 
   describe 'adding friends' do
 
-    before do
-      FactoryGirl.create :user
+    let!(:friend) { create :user }
 
+    before do
       login_as user
       visit users_path
     end
@@ -43,7 +43,7 @@ describe 'Friendships' do
       it 'should not show a link for current friends'
     end
 
-    it 'should add a friend' do
+    it 'adds a friend' do
       click_link 'Add Friend'
 
       should have_content 'Added Friend'
