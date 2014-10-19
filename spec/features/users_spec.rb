@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe 'Users' do
 
+  include ActionView::RecordIdentifier
+
   subject { page }
 
   let(:admin) { FactoryGirl.create :admin }
@@ -259,20 +261,53 @@ describe 'Users' do
       users.map { |u| should have_css "a[href='#{ user_games_path u }']" }
     end
 
-    context 'existing usernames should not be blank' do
+    it 'does not link to add yourself as a friend' do
+      within("##{ dom_id user }") { should_not have_css "a[href='#{ friendships_path friend_id: user }']" }
+    end
+
+    context 'username is blank' do
+
+      let(:invalid) { create :user }
 
       before do
-        @invalid_user = FactoryGirl.create :user
-        @invalid_user.update_attribute :username, nil
+        invalid.update_attribute :username, nil
+        visit users_path
+      end
+
+      it 'displays the email instead' do
+        should have_content invalid.email
+      end
+
+    end
+
+    context 'users are not already your friends' do
+
+      let(:others) { User.where 'id != ?', user.id }
+
+      it 'links to add them as a friend' do
+        others.each do |friend|
+          within("##{ dom_id friend }") { should have_css "a[href='#{ friendships_path friend_id: friend }']" }
+        end
+      end
+
+    end
+
+    context 'users are already your friends' do
+
+      let(:friend) { User.where('id != ?', user.id).first }
+
+      before do
+        create :friendship, user: user, friend: friend
 
         visit users_path
       end
 
-      it 'displays the email for users that do not have a username' do
-        should have_content @invalid_user.email
+      it 'does not link to add them as a friend' do
+        within("##{ dom_id friend }") { should_not have_css "a[href='#{ friendships_path friend_id: friend }']" }
       end
 
     end
+
 
   end
 
