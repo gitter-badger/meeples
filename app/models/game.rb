@@ -58,6 +58,7 @@ private
       type = item['type']
       name = item.css('name').attribute('value').value
       year = item.css('yearpublished').attribute('value').value unless item.css('yearpublished').blank?
+      year = nil unless year.to_s.match(/^\d{4}\z/)
 
       game = where(bgg_id: id, name: name, year_published: year).first_or_initialize
       game.bgg_type = type
