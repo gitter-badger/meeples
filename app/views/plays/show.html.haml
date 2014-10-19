@@ -1,28 +1,28 @@
-.row.col-sm-12
+.row-fluid.col-sm-12
   %h1
     = @play.game.name
     %small
       = time_ago_in_words @play.created_at
       ago
 
-.row.col-sm-12
+.row-fluid.col-sm-12
   %h2
     by
     = @play.user.username
 
-.row.col-sm-12
+.row-fluid.col-sm-12
   %p= sanitize @play.description
 
-.row.col-sm-12
+.row-fluid.col-sm-12
   %h3
     Playing with
     %small
       = pluralize @play.players.count, 'player'
 
-.row.col-sm-12
+.row-fluid.col-sm-12
   = render partial: 'users', locals: { users: @play.players }
 
-.row.col-sm-12
+.row-fluid.col-sm-12
   %br/
 
   - @comments.each do |comment|
@@ -37,7 +37,7 @@
           = time_ago_in_words comment.created_at
           ago
 
-.row.col-sm-12
+.row-fluid.col-sm-12
   = simple_form_for [@play, @comment] do |f|
     = f.input :body, label: 'Add a new comment'
     = f.submit 'Post comment', class: 'btn btn-primary'

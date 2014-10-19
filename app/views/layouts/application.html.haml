@@ -18,10 +18,10 @@
   %body{ data: { environment: Rails.env }}
     = render 'navbar'
 
-    .container
+    .container-fluid
       %header
         - flash.each do |type, message|
-          .row.col-sm-12.flash
+          .row-fluid.col-sm-12.flash
             .alert{ class: "alert-#{ type }" }
               %button.close{ data: { dismiss: 'alert' }} ×
               = message
