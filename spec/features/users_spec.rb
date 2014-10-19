@@ -235,6 +235,10 @@ describe 'Users' do
       users.map { |u| should have_content "#{ u.plays.count }" }
     end
 
+    it 'links to the user profile' do
+      users.map { |u| should have_css "a[href='#{ user_path u }']" }
+    end
+
   end
 
 end
