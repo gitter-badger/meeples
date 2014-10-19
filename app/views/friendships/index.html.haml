@@ -1,11 +1,14 @@
-.row-fluid
-  %table.table.table-striped.table-bordered
+.row.col-xs-12
+  %table.table.table-bordered.table-striped
 
     %thead
       %tr
         %th Username
 
     %tbody
-      - @friends.each do |friend|
+      - for friend in @friends
         %tr
           %td= link_to friend.username, friend
+
+.row.col-xs-12
+  .text-center= paginate @friends

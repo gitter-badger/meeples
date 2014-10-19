@@ -11,7 +11,7 @@ class FriendshipsController < ApplicationController
   end
 
   def index
-    @friends = current_user.friends
+    @friends = current_user.friends.page params[:page]
   end
 
 end
