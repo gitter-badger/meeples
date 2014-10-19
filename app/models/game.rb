@@ -7,6 +7,7 @@ class Game < ActiveRecord::Base
   require 'nokogiri'
 
   has_many :plays
+  has_many :users, ->{ uniq }, :through => :plays
 
   validates :name, presence: true
 

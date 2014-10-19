@@ -1,16 +1,50 @@
 .row.col-sm-12
   %h1
-    = @game.name
+    = link_to games_path, class: 'btn btn-lg' do
+      %span.glyphicon.glyphicon-chevron-left
+    %span= @game.name
     %small= @game.year_published
 
 .row.col-sm-12
-  %p= link_to 'back to games', games_path
-
-.row.col-sm-12
   %p
-    %small= link_to "#{@game.name} on StackExchange", @game.stack_exchange_link, target: '_blank'
+    %small
+      View
+      = link_to @game.name, @game.stack_exchange_link, target: '_blank'
+      questions on
+      = link_to 'StackExchange', 'http://boardgames.stackexchange.com', target: '_blank'
 
 .row.col-xs-12
-  %h2
-    %small
-      = link_to 'Record your game play', [:new, @game, :play], class: 'btn btn-success'
+  %p= link_to 'Record your game play', [:new, @game, :play], class: 'btn btn-success'
+
+- if @plays.any?
+  .row.col-sm-12
+    %h2
+      Everyone's games
+      %small
+        this game has been played
+        = pluralize @plays.count, 'time'
+        by
+        = pluralize @game.users.count, 'person'
+
+  .row.col-sm-12
+    %table.table.table-bordered.table-striped.plays
+      %thead
+        %tr
+          %th Username
+          %th.col-sm-6 Comment
+          %th.col-sm-1 Players
+          %th.col-sm-2 Played
+
+      %tbody
+        - for play in @plays
+          %tr.play{ id: dom_id(play) }
+            %td= link_to play.user.username, play.user
+            %td= play.description
+            %td= play.players.count
+            %td
+              = link_to play do
+                = time_ago_in_words play.created_at
+                ago
+
+  .row.col-sm-12
+    .text-center= paginate @plays
