@@ -1,4 +1,9 @@
 .row.col-xs-12
   = simple_form_for [@game, @play] do |f|
     = f.input :description
+    .form-group.string.optional.play_description
+      = f.label :user_usernames, 'Playing with (usernames)'
+      %div
+        = f.autocomplete_field :user_usernames, autocomplete_user_usernames_game_plays_path,
+  'data-delimiter' => ',', :multiple => true, as: :autocomplete, class: 'string optional form-control'
     = f.submit 'play'

@@ -36,6 +36,27 @@ describe 'Plays' do
         should have_content 'Play was successfully created'
       end
 
+      describe 'adding players', :js do
+
+        let(:player) { create :user }
+
+        before do
+          skip 'JS testing for autocomplete for now until we have time to figure it out'
+          fill_in_fields :play, user_usernames: player.username
+          click_button 'play'
+        end
+
+        it 'shows success message' do
+          should have_content 'Play was successfully created'
+        end
+
+        it 'shows number of players added' do
+          should have_content 'Playing with 1 player'
+          shoudl have_content player.username
+        end
+
+      end
+
     end
 
   end
@@ -58,6 +79,21 @@ describe 'Plays' do
 
     it 'includes user' do
       should have_content play.user.username
+    end
+
+    context 'with players' do
+
+      let(:player) { create :user }
+
+      before do
+        play.player_ids = [player.id]
+        visit play_path play
+      end
+
+      it 'includes player username' do
+        should have_content player.username
+      end
+
     end
 
   end
