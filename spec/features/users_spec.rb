@@ -224,8 +224,12 @@ describe 'Users' do
 
     before do
       create_list :user, 2
-      users.each { |u| create_list :play, 2, user: u, game: games.first }
-      users.each { |u| create      :play,    user: u, game: games.last }
+
+      users.each do |user|
+        create      :friendship, user: user
+        create      :play,       user: user, game: games.last
+        create_list :play, 2,    user: user, game: games.first
+      end
 
       login_as user
       visit users_path
@@ -233,6 +237,10 @@ describe 'Users' do
 
     it 'includes the username for each user' do
       users.map { |u| should have_content u.username }
+    end
+
+    it 'includes the number of friends for each user' do
+      users.map { |u| should have_content "#{ u.friends.count }" }
     end
 
     it 'includes the total number of plays for each user' do
