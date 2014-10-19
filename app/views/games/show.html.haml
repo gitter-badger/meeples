@@ -2,8 +2,7 @@
   %h1
     = link_to games_path, class: 'btn btn-lg' do
       %span.glyphicon.glyphicon-chevron-left
-
-    = @game.name
+    %span= @game.name
     %small= @game.year_published
 
 .row.col-sm-12
@@ -19,7 +18,13 @@
 
 - if @plays.any?
   .row.col-sm-12
-    %h2 Everyone's Plays
+    %h2
+      Everyone's games
+      %small
+        this game has been played
+        = pluralize @plays.count, 'time'
+        by
+        = pluralize @game.users.count, 'person'
 
   .row.col-sm-12
     %table.table.table-bordered.table-striped.plays
