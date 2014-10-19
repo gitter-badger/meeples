@@ -17,4 +17,7 @@ class GamesController < ApplicationController
     respond_with @game
   end
 
+  def recently_viewed
+  end
+
 end

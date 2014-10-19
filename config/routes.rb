@@ -5,6 +5,7 @@ Meeple::Application.routes.draw do
   ActiveAdmin.routes self
 
   resources :games, only: %i[ index show ] do
+    get :recently_viewed, :on => :collection
     resources :plays, only: %i[ new create show ], shallow: true do
       get :autocomplete_user_usernames, :on => :collection
     end

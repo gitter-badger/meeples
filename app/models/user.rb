@@ -70,8 +70,8 @@ class User < ActiveRecord::Base
     $redis.zadd "recently-viewed-#{id}", Time.now.to_i, {game_id: game.id, game_name: game.name }.to_json
   end
 
-  def recently_viewed
-    recent = $redis.zrevrange "recently-viewed-#{id}", 1, 6
+  def recently_viewed start = 1, max = 6
+    recent = $redis.zrevrange "recently-viewed-#{id}", start, max
     recent.map do |payload|
       JSON.parse(payload) rescue {}
     end
