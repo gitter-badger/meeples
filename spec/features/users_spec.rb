@@ -247,6 +247,10 @@ describe 'Users' do
       users.map { |u| should have_css "a[href='#{ user_path u }']" }
     end
 
+    it 'links to the user game history' do
+      users.map { |u| should have_css "a[href='#{ user_games_path u }']" }
+    end
+
   end
 
 end
