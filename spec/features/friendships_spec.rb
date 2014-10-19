@@ -9,35 +9,21 @@ describe 'Friendships' do
 
   describe 'listing friends' do
 
+    let(:friends) { user.friends }
+
     before do
+      create_list :friendship, 2, user: user
+
       login_as user
-
-      @friend_a = FactoryGirl.create :user, email: 'friend_a@example.com'
-      @friend_b = FactoryGirl.create :user, email: 'friend_b@example.com'
-
-      @non_friend = FactoryGirl.create :user, email: 'non_friend@example.com'
-
-      FactoryGirl.create :friendship, user: user, friend: @friend_a
-      FactoryGirl.create :friendship, user: user, friend: @friend_b
-    end
-
-    it 'should have a link to view friends' do
-      should have_css("a[href='#{ friendships_path }']")
-    end
-
-    it 'should list friends' do
       visit friendships_path
+    end
 
-      should have_content 'friend_a@example.com'
-      should have_content 'friend_b@example.com'
-
-      should_not have_content 'non_friend@example.com'
+    it 'includes list all friends' do
+      friends.each { |f| should have_content f.username }
     end
 
     it 'should have a link to view friend' do
-      visit friendships_path
-
-      should have_css("a[href='#{ user_path(@friend_a) }']")
+      friends.each { |f| should have_css "a[href='#{ user_path f }']" }
     end
 
   end
