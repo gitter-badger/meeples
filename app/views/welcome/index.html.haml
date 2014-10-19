@@ -1,18 +1,19 @@
 - title 'Home'
 
-.jumbotron
-  %h1
-    Meeples
-    %small Rails Rumble 2014
+.row.col-sm-12
+  .jumbotron
+    %h1
+      Meeples
+      %small Rails Rumble 2014
 
 - unless user_signed_in?
-  .row
-    .col-xs-6
+  .row.col-sm-12
+    .col-sm-6
       %h2 New Users
       = link_to 'Sign in with Github',   user_omniauth_authorize_path(:github),   class: 'btn btn-block btn-warning'
       = link_to 'Sign in with Facebook', user_omniauth_authorize_path(:facebook), class: 'btn btn-block btn-primary'
       = link_to 'Sign up',               new_user_registration_path,              class: 'btn btn-block btn-default'
 
-    .col-xs-6
+    .col-sm-6
       %h2 Existing users
       = link_to 'Sign in', new_user_session_path, class: 'btn btn-block btn-success'

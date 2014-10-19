@@ -1,12 +1,12 @@
-.row.col-xs-12
+.row.col-sm-12
   %h1
     = @game.name
     %small= @game.year_published
 
-.row.col-xs-12
+.row.col-sm-12
   %p= link_to 'back to games', games_path
 
-.row.col-xs-12
+.row.col-sm-12
   %p
     %small= link_to "#{@game.name} on StackExchange", @game.stack_exchange_link, target: '_blank'
 
