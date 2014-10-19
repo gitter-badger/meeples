@@ -5,7 +5,6 @@ ruby '2.1.3'
 gem 'rails'
 
 gem 'activeadmin',    github: 'gregbell/active_admin'
-gem 'bootstrap-sass'
 gem 'cancancan'
 gem 'devise'
 gem 'haml-rails'
