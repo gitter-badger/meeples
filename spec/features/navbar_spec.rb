@@ -22,6 +22,7 @@ describe 'Navbar' do
     end
 
     it { should have_css "a[href='#{ games_path }']" }
+    it { should have_css "a[href='#{ users_path }']" }
 
   end
 

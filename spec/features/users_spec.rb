@@ -210,7 +210,7 @@ describe 'Users' do
     end
 
     it 'can sign out', :js do
-      click_link user.email
+      click_link user.username
       find_link('sign out').click
       should have_content 'Signed out successfully'
     end
@@ -219,23 +219,44 @@ describe 'Users' do
 
   describe 'listing users' do
 
+    let(:users) { User.all }
+    let(:games) { create_list :game, 2 }
+
     before do
+      create_list :user, 2
+
+      users.each do |user|
+        create      :friendship, user: user
+        create      :play,       user: user, game: games.last
+        create_list :play, 2,    user: user, game: games.first
+      end
+
       login_as user
-    end
-
-    it 'should have a link to view all users' do
-      should have_css("a[href='#{ users_path }']")
-    end
-
-    it 'should list users' do
-      user_a = FactoryGirl.create :user, email: 'user_a@example.com'
-      user_b = FactoryGirl.create :user, email: 'user_b@example.com'
-
       visit users_path
-      
-      should have_content 'user_a@example.com'
-      should have_content 'user_b@example.com'
-      should have_content user.email
+    end
+
+    it 'includes the username for each user' do
+      users.map { |u| should have_content u.username }
+    end
+
+    it 'includes the number of friends for each user' do
+      users.map { |u| should have_content "#{ u.friends.count }" }
+    end
+
+    it 'includes the total number of plays for each user' do
+      users.map { |u| should have_content "#{ u.plays.count }" }
+    end
+
+    it 'includes the number unique of plays for each user' do
+      users.map { |u| should have_content "#{ u.games.uniq.count }" }
+    end
+
+    it 'links to the user profile' do
+      users.map { |u| should have_css "a[href='#{ user_path u }']" }
+    end
+
+    it 'links to the user game history' do
+      users.map { |u| should have_css "a[href='#{ user_games_path u }']" }
     end
 
   end
