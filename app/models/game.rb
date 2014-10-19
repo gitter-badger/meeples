@@ -19,8 +19,8 @@ class Game < ActiveRecord::Base
 
   def self.search_by_name game_name
     games = lookup game_name
-    games = search_bgg! game_name unless games.any?
-    games
+    search_bgg! game_name unless games.any?
+    games ||= lookup game_name
   end
 
 private
