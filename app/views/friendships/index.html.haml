@@ -1,14 +1,5 @@
 .row.col-xs-12
-  %table.table.table-bordered.table-striped
-
-    %thead
-      %tr
-        %th Username
-
-    %tbody
-      - for friend in @friends
-        %tr
-          %td= link_to friend.username, friend
+  = render partial: 'users', locals: { users: @friends }
 
 .row.col-xs-12
   .text-center= paginate @friends

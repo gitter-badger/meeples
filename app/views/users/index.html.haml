@@ -1,24 +1,5 @@
 .row.col-xs-12
-  %table.table.table-striped.table-bordered
-
-    %thead
-      %tr
-        %th Username
-        %th Total plays
-        %th Unique games
-        %th Friends
-        %th
-
-    %tbody
-      - for user in @users
-        %tr{ id: dom_id(user) }
-          %td= user.username? ? user.username : user.email
-          %td= link_to user.plays.count, user
-          %td= link_to user.games.uniq.count, [user, :games]
-          %td= user.friends.count
-          %td
-            - unless current_user == user || current_user.friends.include?(user)
-              = link_to 'Add Friend', friendships_path(friend_id: user), :method => :post
+  = render partial: 'users', locals: { users: @users }
 
 .row.col-xs-12
   .text-center= paginate @users

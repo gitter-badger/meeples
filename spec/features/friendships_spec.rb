@@ -38,7 +38,7 @@ describe 'Friendships' do
     end
 
     it 'adds a friend' do
-      click_link 'Add Friend'
+      click_link 'add friend'
 
       should have_content 'Added Friend'
     end
