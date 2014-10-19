@@ -79,6 +79,10 @@ describe 'Games' do
 
     it { should have_css "a[href='#{ games_path }']"}
 
+    it 'includes link to stack exchange' do
+      should have_css "a[href='#{game.stack_exchange_link}']"
+    end
+
     context 'when logged in' do
 
       before do
