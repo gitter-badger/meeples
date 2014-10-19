@@ -60,12 +60,11 @@ describe 'Games' do
 
   end
 
-  describe 'viewing', :vcr do
+  describe 'viewing' do
 
-    let(:game) { Game.lookup('munchkin fu 2').first }
+    let(:game) { create :game, name: 'munchkin fu 2' }
 
     before do
-      Game.search_bgg! 'munchkin fu 2'
       visit game_path game
     end
 
