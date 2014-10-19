@@ -231,6 +231,10 @@ describe 'Users' do
       users.map { |u| should have_content u.username }
     end
 
+    it 'includes the total number of plays for each user' do
+      users.map { |u| should have_content "#{ u.plays.count }" }
+    end
+
   end
 
 end
