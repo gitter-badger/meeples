@@ -13,6 +13,7 @@
         %th.col-sm-1 Plays
         %th.col-sm-2 First Played
         %th.col-sm-2 Last Played
+        %th.col-sm-2 Rating
 
     %tbody
       - for game in @played_games
@@ -26,6 +27,7 @@
           %td
             = time_ago_in_words plays.first.created_at
             ago
+          %td= (plays.map(&:rating).map(&:to_i).reduce(:+) / plays.count.to_f).round(1)
 
 .row.col-sm-12
   .text-center= paginate @played_games

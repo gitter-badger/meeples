@@ -12,6 +12,7 @@
         %th Game
         %th.col-sm-6 Comment
         %th.col-sm-2 Played
+        %th.col-sm-2 Rating
 
     %tbody
       - for play in @user.plays.recent
@@ -22,3 +23,4 @@
             = link_to play do
               = time_ago_in_words play.created_at
               ago
+          %td= play.rating.to_i

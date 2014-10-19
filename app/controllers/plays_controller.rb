@@ -30,7 +30,7 @@ class PlaysController < ApplicationController
 private
 
   def play_params
-    params.require(:play).permit :description, user_usernames: [ ]
+    params.require(:play).permit :description, :rating, user_usernames: [ ]
   end
 
 end

@@ -17,11 +17,13 @@
     %tr
       %th Name
       %th Year
+      %th Rating
 
     - for game in @games
       %tr{ id: dom_id(game) }
         %td= link_to game.name, game
         %td= game.year_published
+        %td= game.avg_rating
 
 .row.col-sm-12
   .text-center= paginate @games
