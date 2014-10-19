@@ -18,7 +18,7 @@
         |
         = link_to 'BoardGameGeek', @game.bgg_link, target: '_blank'
 
-.row-fluid.col-xs-12
+.row-fluid.col-sm-12
   %p= link_to "I'm playing this", [:new, @game, :play], class: 'btn btn-success'
 
 - if @plays.any?
@@ -55,7 +55,8 @@
     .text-center= paginate @plays
 
 - if current_user and current_user.recently_viewed
-  %h2 Recently Viewed
+  .row-fluid.col-sm-12
+    %h2 Recently Viewed
   .row-fluid
     - for recent in current_user.recently_viewed
       - game = Game.find_by_id recent['game_id']
