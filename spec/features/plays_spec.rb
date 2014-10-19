@@ -41,7 +41,7 @@ describe 'Plays' do
         let(:player) { create :user }
 
         before do
-          skip 'JS testing for autocomplete'
+          skip 'JS testing for autocomplete for now until we have time to figure it out'
           fill_in_fields :play, user_usernames: player.username
           click_button 'play'
         end
