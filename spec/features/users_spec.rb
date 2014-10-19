@@ -259,6 +259,21 @@ describe 'Users' do
       users.map { |u| should have_css "a[href='#{ user_games_path u }']" }
     end
 
+    context 'existing usernames should not be blank' do
+
+      before do
+        @invalid_user = FactoryGirl.create :user
+        @invalid_user.update_attribute :username, nil
+
+        visit users_path
+      end
+
+      it 'displays the email for users that do not have a username' do
+        should have_content @invalid_user.email
+      end
+
+    end
+
   end
 
 end

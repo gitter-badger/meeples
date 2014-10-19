@@ -12,7 +12,7 @@
     %tbody
       - @users.each do |user|
         %tr
-          %td= user.username
+          %td= user.username? ? user.username : user.email
           %td= link_to user.plays.count, user
           %td= link_to user.games.uniq.count, [user, :games]
           %td= user.friends.count
