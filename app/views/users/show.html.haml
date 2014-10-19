@@ -10,13 +10,14 @@
     %thead
       %tr
         %th Game
-        %th Check in
-        %th Played
+        %th.col-xs-6 Check in
+        %th.col-xs-2 Played
+
     %tbody
       - for play in @user.plays.recent
         %tr.play{ id: dom_id(play) }
           %td= link_to play.game.name, play.game
-          %td.col-xs-6= play.description
+          %td= play.description
           %td
             = link_to play do
               = time_ago_in_words play.created_at

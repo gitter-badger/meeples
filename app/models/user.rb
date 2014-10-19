@@ -15,8 +15,7 @@ class User < ActiveRecord::Base
   has_many :friends,      :through => :friendships
   has_many :friendships
   has_many :games,                                       :through => :plays
-  has_many :played_games, -> { uniq }, :source => :game, :through => :plays
-  has_many :plays,        -> { order 'created_at desc' }
+  has_many :plays,        -> { order 'plays.created_at desc' }
 
   validates :username, presence: true, uniqueness: { case_sensitive: false }
 
@@ -62,6 +61,10 @@ class User < ActiveRecord::Base
         user.email ||= data['email']
       end
     end
+  end
+
+  def played_games
+    Game.played_by id
   end
 
   def locked?
