@@ -1,12 +1,11 @@
-.row-fluid.col-sm-12
-  %table.table.table-striped.table-bordered
+%table.table.table-striped.table-bordered
 
-    %thead
-      %tr
-        %th Username
-        %th Total plays
-        %th Unique games
-        %th Friends
-        %th
+  %thead
+    %tr
+      %th Username
+      %th.col-sm-2 Total plays
+      %th.col-sm-2 Unique games
+      %th.col-sm-2 Friends
+      %th
 
-    %tbody= render users
+  %tbody= render users
