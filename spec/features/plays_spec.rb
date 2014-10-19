@@ -144,4 +144,29 @@ describe 'Plays' do
 
   end
 
+  describe 'viewing all plays' do
+
+    let!(:plays) { Play.all.limit 15 }
+
+    before do
+      create_list :play, 25, with_players: 2
+      visit plays_path
+    end
+
+    it { should have_css '.plays' }
+
+    it 'includes username for all plays' do
+      plays.map { |p| within("##{ dom_id p }") { should have_content p.user.username } }
+    end
+
+    it 'includes number of players for all plays' do
+      plays.map { |p| within("##{ dom_id p }") { should have_content "#{ p.players.count }" } }
+    end
+
+    it 'includes times for all plays' do
+      plays.map { |p| within("##{ dom_id p }") { should have_content time_ago_in_words(p.created_at) } }
+    end
+
+  end
+
 end

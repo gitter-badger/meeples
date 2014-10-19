@@ -9,8 +9,16 @@ FactoryGirl.define do
   end
 
   factory :play do
+    ignore do
+      with_players 0
+    end
+
     game
     user
+
+    before :create do |play, proxy|
+      play.players = create_list :user, proxy.with_players if proxy.with_players.present?
+    end
 
     factory :described_play do
       description { Faker::Company.bs }
