@@ -7,7 +7,7 @@ class Game < ActiveRecord::Base
 
   validates :name, presence: true
 
-  scope :lookup, ->(n){ where 'lower(name) like ?', "%#{ n }%" }
+  scope :lookup, ->(n){ where 'lower(name) like ?', "%#{ n.downcase }%" }
 
   def self.played_by user_id
     group('games.id').
