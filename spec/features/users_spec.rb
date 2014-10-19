@@ -219,19 +219,16 @@ describe 'Users' do
 
   describe 'listing users' do
 
+    let(:users) { User.all }
+
     before do
+      create_list :user, 2
       login_as user
+      visit users_path
     end
 
-    it 'should list users' do
-      user_a = FactoryGirl.create :user, email: 'user_a@example.com'
-      user_b = FactoryGirl.create :user, email: 'user_b@example.com'
-
-      visit users_path
-
-      should have_content 'user_a@example.com'
-      should have_content 'user_b@example.com'
-      should have_content user.email
+    it 'includes the email for each user' do
+      users.map { |u| should have_content u.email }
     end
 
   end
