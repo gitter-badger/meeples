@@ -1,5 +1,8 @@
 class Game < ActiveRecord::Base
 
+  BGG_BASE_URL = 'http://www.boardgamegeek.com'
+  BGG_TYPES    = %w[ rpgitem videogame boardgame boardgameexpansion ]
+
   require 'open-uri'
   require 'nokogiri'
 
@@ -8,6 +11,10 @@ class Game < ActiveRecord::Base
   validates :name, presence: true
 
   scope :lookup, ->(n){ where 'lower(name) like ?', "%#{ n.downcase }%" }
+
+  def self.bgg_api_search_url query
+    "#{BGG_BASE_URL}/xmlapi2/search?query=#{URI.escape query}"
+  end
 
   def self.played_by user_id
     group('games.id').
@@ -23,10 +30,14 @@ class Game < ActiveRecord::Base
     games ||= lookup game_name
   end
 
+  def stack_exchange_link
+    "http://boardgames.stackexchange.com/search?q=#{name}"
+  end
+
 private
 
   def self.search_bgg! query
-    url = "http://www.boardgamegeek.com/xmlapi2/search?query=#{ URI.encode query }"
+    url = bgg_api_search_url query
     doc = Nokogiri::HTML open(url), nil, 'utf-8'
 
     doc.xpath('//item').map do |item|
