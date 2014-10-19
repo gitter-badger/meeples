@@ -1,10 +1,15 @@
-- if Rails.env.production?
-  -# rails rumble voting banner
-  :javascript
-    var rumbleBannerBackgroundColor, rumbleBannerTextColor, rumbleBannerLinkColor, rumbleBannerPlacement;
-    rumbleBannerBackgroundColor = '#161616';
-    rumbleBannerTextColor = '#b0b0b0';
-    rumbleBannerLinkColor = '#ffffff';
-    rumbleBannerPlacement = 'bottom'; // Optionally replace with 'bottom'.
+.navbar.navbar-default.navbar-fixed-bottom
+  .container
+    .navbar-text.visible-lg
+      &copy; 2014 Meeples
 
-  %script{ src: 'http://s0.railsrumble.com/banner-2014.js', type: 'text/javascript' }
+    .navbar-text.visible-md.visible-lg
+      There are #{ pluralize Game.count, 'game' }.
+      There are #{ pluralize User.count, 'user' }.
+      #{ pluralize Play.unique_users, 'person' } have played #{ pluralize Play.unique_games, 'game' }.
+
+    .navbar-text.pull-right
+      You can
+      = link_to 'vote for us', "http://railsrumble.com/?view=#{ root_url }"
+      in the
+      = link_to '2014 Rails Rumble!', 'http://railsrumble.com/'
