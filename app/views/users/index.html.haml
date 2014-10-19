@@ -10,8 +10,8 @@
         %th
 
     %tbody
-      - @users.each do |user|
-        %tr
+      - for user in @users
+        %tr{ id: dom_id(user) }
           %td= user.username? ? user.username : user.email
           %td= link_to user.plays.count, user
           %td= link_to user.games.uniq.count, [user, :games]

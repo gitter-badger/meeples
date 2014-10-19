@@ -37,12 +37,6 @@ describe 'Friendships' do
       visit users_path
     end
 
-    context 'add friend links' do
-      it 'should not show a link for current user'
-
-      it 'should not show a link for current friends'
-    end
-
     it 'adds a friend' do
       click_link 'Add Friend'
 
