@@ -7,13 +7,21 @@
       %small Rails Rumble 2014
 
     %p
-      An easy way for you to record what game you're playing now! Tag friends and record
-      who won so there's never a champion dispute that can't be solved.
+      An easy way for you to record what game you're playing now! Tag friends
+      and rate the game. View your recent plays to record who won so there's
+      never a champion dispute that can't be solved.
 
       .text-right= image_tag 'https://d4nnn7wspfa3h.cloudfront.net/rails-rumble-badge-light.png'
 
-- unless user_signed_in?
-  .row-fluid.col-sm-12
+.row-fluid.col-sm-12
+  - if user_signed_in?
+    %h2
+      Get some #{ link_to 'friends', users_path, class: 'btn btn-xl btn-warning' }
+      and #{ link_to 'play', plays_path, class: 'btn btn-xl btn-danger' }
+      a #{ link_to 'game', games_path, class: 'btn btn-xl btn-info' }!
+
+
+  - else
     .col-sm-6
       %h2 New Users
       = link_to 'Sign in with Github',   user_omniauth_authorize_path(:github),   class: 'btn btn-block btn-warning'
