@@ -210,7 +210,7 @@ describe 'Users' do
     end
 
     it 'can sign out', :js do
-      click_link user.email
+      click_link user.username
       find_link('sign out').click
       should have_content 'Signed out successfully'
     end
@@ -227,8 +227,8 @@ describe 'Users' do
       visit users_path
     end
 
-    it 'includes the email for each user' do
-      users.map { |u| should have_content u.email }
+    it 'includes the username for each user' do
+      users.map { |u| should have_content u.username }
     end
 
   end

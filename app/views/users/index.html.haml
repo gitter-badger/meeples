@@ -3,13 +3,13 @@
 
     %thead
       %tr
-        %th Email
+        %th Username
         %th
 
     %tbody
       - @users.each do |user|
         %tr
-          %td= user.email
+          %td= user.username
           %td
             - unless current_user == user || current_user.friends.include?(user)
-              =link_to 'Add Friend', friendships_path(:friend_id => user), :method => :post
+              = link_to 'Add Friend', friendships_path(friend_id: user), :method => :post
