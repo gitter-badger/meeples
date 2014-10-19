@@ -3,13 +3,11 @@ class GamesController < ApplicationController
   load_resource :game
 
   def index
-    @games = if params[:search]
-      Game.search_by_name params[:search][:game_name]
-    else
-      Game.all
-    end
-
     params[:search] ||= {}
+
+    @games = Game.search_by_name params[:search][:game_name] if params[:search][:game_name]
+    @games = @games.page params[:page]
+
     respond_with @games
   end
 

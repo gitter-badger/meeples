@@ -16,7 +16,10 @@
       %th Name
       %th Year published
 
-    - @games.each do |game|
-      %tr
+    - for game in @games
+      %tr{ id: dom_id(game) }
         %td= link_to game.name, game
         %td= game.year_published
+
+.row.col-xs-12
+  .text-center= paginate @games
