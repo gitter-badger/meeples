@@ -1,0 +1,8 @@
+%tr{ id: dom_id(user) }
+  %td= user.username? ? user.username : user.email
+  %td= link_to user.plays.count, user
+  %td= link_to user.games.uniq.count, [user, :games]
+  %td= user.friends.count
+  %td
+    - if can? :friend, user
+      = link_to 'add friend', friendships_path(friend_id: user), :method => :post

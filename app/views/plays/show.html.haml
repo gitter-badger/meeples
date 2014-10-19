@@ -20,14 +20,7 @@
       = pluralize @play.players.count, 'player'
 
 .row.col-xs-12
-  %table.table.table-bordered.table-striped
-    %thead
-      %tr
-        %th User
-    %tbody
-      - for player in @play.players
-        %tr
-          %td= player.username
+  = render partial: 'users', locals: { users: @play.players }
 
 .row.col-xs-12
   %br/
