@@ -1,4 +1,4 @@
-.row.col-sm-12
+.row-fluid.col-sm-12
   %h1
     = link_to games_path, class: 'btn btn-lg' do
       %span.glyphicon.glyphicon-chevron-left
@@ -9,7 +9,7 @@
       = @game.avg_rating
       average rating
 
-.row.col-sm-12
+.row-fluid.col-sm-12
   %p
     %small
       View on
@@ -18,11 +18,11 @@
         |
         = link_to 'BoardGameGeek', @game.bgg_link, target: '_blank'
 
-.row.col-xs-12
+.row-fluid.col-sm-12
   %p= link_to "I'm playing this", [:new, @game, :play], class: 'btn btn-success'
 
 - if @plays.any?
-  .row.col-sm-12
+  .row-fluid.col-sm-12
     %h2
       Everyone's games
       %small
@@ -31,7 +31,7 @@
         by
         = pluralize @game.users.count, 'person'
 
-  .row.col-sm-12
+  .row-fluid.col-sm-12
     %table.table.table-bordered.table-striped.plays
       %thead
         %tr
@@ -51,12 +51,13 @@
                 = time_ago_in_words play.created_at
                 ago
 
-  .row.col-sm-12
+  .row-fluid.col-sm-12
     .text-center= paginate @plays
 
 - if current_user and current_user.recently_viewed
-  %h2 Recently Viewed
-  .row
+  .row-fluid.col-sm-12
+    %h2 Recently Viewed
+  .row-fluid
     - for recent in current_user.recently_viewed
       - game = Game.find_by_id recent['game_id']
       .col-xs-3.col-md-2
