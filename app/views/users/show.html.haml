@@ -9,10 +9,11 @@
   %table.table.table-bordered.table-striped
     %thead
       %tr
-        %th Game
+        %th.col-sm-4 Game
         %th.col-sm-6 Comment
         %th.col-sm-2 Played
-        %th.col-sm-2 Rating
+        %th.col-sm-2 User Rating
+        %th.col-sm-2 Avg. Rating
 
     %tbody
       - for play in @user.plays.recent
@@ -24,3 +25,4 @@
               = time_ago_in_words play.created_at
               ago
           %td= play.rating.to_i
+          %td= play.game.avg_rating
