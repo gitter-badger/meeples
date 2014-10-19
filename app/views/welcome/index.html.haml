@@ -1,6 +1,6 @@
 - title 'Home'
 
-.row.col-sm-12
+.row-fluid.col-sm-12
   .jumbotron
     %h1
       Meeples
@@ -13,7 +13,7 @@
       .text-right= image_tag 'https://d4nnn7wspfa3h.cloudfront.net/rails-rumble-badge-light.png'
 
 - unless user_signed_in?
-  .row.col-sm-12
+  .row-fluid.col-sm-12
     .col-sm-6
       %h2 New Users
       = link_to 'Sign in with Github',   user_omniauth_authorize_path(:github),   class: 'btn btn-block btn-warning'

@@ -1,6 +1,6 @@
 - title 'Resend confirmation instructions'
 
-.row.col-sm-12.col-md-12.col-lg-12
+.row-fluid.col-sm-12.col-md-12.col-lg-12
   = form_for resource, as: resource_name, url: confirmation_path(resource_name), :method => :post do |f|
 
     - errors = resource.errors[:email]

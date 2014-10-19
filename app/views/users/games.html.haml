@@ -1,11 +1,11 @@
-.row.col-sm-12
+.row-fluid.col-sm-12
   %h1
     = @user.username
 
-.row.col-sm-12
+.row-fluid.col-sm-12
   %h2 All plays
 
-.row.col-sm-12
+.row-fluid.col-sm-12
   %table.table.table-bordered.table-striped
     %thead
       %tr
@@ -31,5 +31,5 @@
           %td= (plays.map(&:rating).map(&:to_i).reduce(:+) / plays.count.to_f).round(1)
           %td= game.avg_rating
 
-.row.col-sm-12
+.row-fluid.col-sm-12
   .text-center= paginate @played_games

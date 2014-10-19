@@ -1,11 +1,11 @@
-.row.col-sm-12
+.row-fluid.col-sm-12
   %h2
     New Play
     %small
       for
       = @game.name
 
-.row.col-sm-12
+.row-fluid.col-sm-12
   = simple_form_for [@game, @play] do |f|
     .form-group.optional
       = f.label :rating, 'Game Rating'
