@@ -12,6 +12,7 @@ class GamesController < ApplicationController
   end
 
   def show
+    @plays = @game.plays.page params[:page]
     respond_with @game
   end
 

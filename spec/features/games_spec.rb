@@ -2,6 +2,9 @@ require 'spec_helper'
 
 describe 'Games' do
 
+  include ActionView::Helpers::DateHelper
+  include ActionView::RecordIdentifier
+
   subject { page }
 
   describe 'searching', :vcr do
@@ -81,6 +84,36 @@ describe 'Games' do
 
     it 'includes link to stack exchange' do
       should have_css "a[href='#{game.stack_exchange_link}']"
+    end
+
+    context 'without plays' do
+
+      it { should_not have_css '.plays' }
+
+    end
+
+    context 'with plays' do
+
+      let!(:plays) { create_list :play, 2, game: game, players: create_list(:user, rand(3)) }
+
+      before do
+        visit game_path game
+      end
+
+      it { should have_css '.plays' }
+
+      it 'includes username for all plays' do
+        plays.map { |p| within("##{ dom_id p }") { should have_content p.user.username } }
+      end
+
+      it 'includes number of players for all plays' do
+        plays.map { |p| within("##{ dom_id p }") { should have_content "#{ p.players.count }" } }
+      end
+
+      it 'includes times for all plays' do
+        plays.map { |p| within("##{ dom_id p }") { should have_content time_ago_in_words(p.created_at) } }
+      end
+
     end
 
   end
