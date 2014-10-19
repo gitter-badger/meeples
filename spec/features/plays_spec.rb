@@ -32,7 +32,7 @@ describe 'Plays' do
 
       it 'records a play' do
         # valid data
-        click_button 'play'
+        click_button 'Add Play'
         should have_content 'Play was successfully created'
       end
 

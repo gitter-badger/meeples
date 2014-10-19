@@ -137,11 +137,13 @@ describe 'Games' do
         let(:other_game) { create :game }
 
         before do
+          login_as create :user
+          visit game_path game
           visit game_path other_game
         end
 
         it 'shows previously viewed game name' do
-          should have_css "a[href='#{ game_path game}']"
+          should have_css "a[href='#{ game_path game }']"
           should have_content game.name
         end
 
