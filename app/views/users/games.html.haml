@@ -15,7 +15,7 @@
         %th.col-xs-2 Last Played
 
     %tbody
-      - for game in @user.played_games
+      - for game in @played_games
         - plays = @user.plays.where(game: game)
         %tr.game{ id: dom_id(game) }
           %td= link_to game.name, game
@@ -26,3 +26,6 @@
           %td
             = time_ago_in_words plays.first.created_at
             ago
+
+.row.col-xs-12
+  .text-center= paginate @played_games

@@ -4,6 +4,8 @@ class UsersController < ApplicationController
 
   def games
     @user = User.find params[:user_id]
+    @played_games = @user.played_games.page params[:page]
+
     respond_with @user
   end
 
