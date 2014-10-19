@@ -28,3 +28,24 @@
       - for player in @play.players
         %tr
           %td= player.username
+
+
+.row.col-xs-12
+  = simple_form_for [@play, @comment] do |f|
+    = f.input :body, label: 'Add a new comment'
+    = f.submit 'Post comment'
+
+.row.col-xs-12
+  %br/
+
+  - @comments.each do |comment|
+    - next if comment.author.nil?
+    %blockquote
+      %p= comment.body
+
+      %footer
+        %span.text-danger= comment.author.username
+
+        %span.text-muted
+          = time_ago_in_words comment.created_at
+          ago

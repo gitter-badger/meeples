@@ -21,6 +21,9 @@ class PlaysController < ApplicationController
   end
 
   def show
+    @comments = @play.comments
+    @comment  = @play.comments.build
+
     respond_with @play
   end
 

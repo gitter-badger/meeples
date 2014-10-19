@@ -5,7 +5,8 @@ class Ability
     if user
       can :manage, :all if user.admin?
 
-      can :manage, Play, user_id: user.id
+      can :manage, Play,    user_id:   user.id
+      can :manage, Comment, author_id: user.id
 
       cannot :destroy, User, id: user.id
       cannot :lock,    User, id: user.id
