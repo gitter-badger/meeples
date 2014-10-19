@@ -86,6 +86,19 @@ describe 'Games' do
       should have_css "a[href='#{game.stack_exchange_link}']"
     end
 
+    context 'bgg link' do
+
+      before do
+        game.update_attribute :bgg_type, 'boardgame'
+        visit game_path game
+      end
+
+      it 'includes link to bgg when bgg_type present' do
+        should have_css "a[href='#{ game.bgg_link }']"
+      end
+
+    end
+
     context 'without plays' do
 
       it { should_not have_css '.plays' }

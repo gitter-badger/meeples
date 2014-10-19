@@ -31,6 +31,11 @@ class Game < ActiveRecord::Base
     games ||= lookup game_name
   end
 
+  def bgg_link
+    return unless bgg_type
+    "#{BGG_BASE_URL}/#{bgg_type}/#{bgg_id}/#{URI.encode name}"
+  end
+
   def stack_exchange_link
     "http://boardgames.stackexchange.com/search?q=#{name}"
   end
