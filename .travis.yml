@@ -17,4 +17,5 @@ notifications:
 
 rvm: 2.1.3
 script: RAILS_ENV=test bundle exec rake spec
+services: redis-server
 sudo: false
