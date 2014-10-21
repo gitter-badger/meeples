@@ -1,2 +1,2 @@
-mail: mailcatcher -f
-unicorn: unicorn_rails
+web: unicorn_rails -p 5000
+redis: redis-server /usr/local/etc/redis.conf
