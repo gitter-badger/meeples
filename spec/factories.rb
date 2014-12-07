@@ -9,7 +9,7 @@ FactoryGirl.define do
   end
 
   factory :play do
-    ignore do
+    transient do
       with_players 0
     end
 
