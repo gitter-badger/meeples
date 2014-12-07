@@ -22,7 +22,7 @@ gem 'redcarpet'
 gem 'redis'
 gem 'responders'
 gem 'sass-rails'
-gem 'simple_form', '~> 3.1.0.rc1'
+gem 'simple_form'
 
 group :assets do
   gem 'coffee-rails'
@@ -35,7 +35,7 @@ group :production, :staging do
   gem 'newrelic_rpm'
   gem 'rack-attack'
   gem 'rails_12factor'
-  gem 'rollbar',               '~> 1.0.0'
+  gem 'rollbar'
   gem 'unicorn'
 end
 
