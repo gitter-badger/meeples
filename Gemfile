@@ -4,13 +4,14 @@ ruby '2.2.0'
 
 gem 'rails'
 
-gem 'activeadmin',    github: 'gregbell/active_admin'
 gem 'cancancan'
 gem 'devise'
 gem 'haml-rails'
 gem 'hirb'
 gem 'hiredis'
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
+gem 'kaminari'
 gem 'nokogiri'
 gem 'omniauth-facebook'
 gem 'omniauth-github'
@@ -19,12 +20,12 @@ gem 'pry-rails'
 gem 'rails4-autocomplete'
 gem 'redcarpet'
 gem 'redis'
+gem 'responders'
 gem 'sass-rails'
 gem 'simple_form', '~> 3.1.0.rc1'
 
 group :assets do
   gem 'coffee-rails'
-  gem 'jquery-ui-rails'
   gem 'uglifier'
 end
 

@@ -23,7 +23,6 @@
                 %b.caret
 
               %ul.dropdown-menu
-                %li= link_to 'admin',           admin_dashboard_path if current_user.admin?
                 %li= link_to 'recent plays',    current_user
                 %li= link_to 'games history',   user_games_path(current_user)
                 %li= link_to 'friends',         friendships_path
