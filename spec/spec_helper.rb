@@ -23,16 +23,18 @@ OmniAuth.config.test_mode = true
 RSpec.configure do |config|
   config.filter_run focus: true
   config.infer_spec_type_from_file_location!
-  config.mock_with :rspec
 
-  config.run_all_when_everything_filtered                = true
-  config.treat_symbols_as_metadata_keys_with_true_values = true
-  config.use_transactional_fixtures                      = false
+  config.run_all_when_everything_filtered = true
+  config.use_transactional_fixtures       = false
+
+  # This is Dev Fu!, we don't `expect` around here!
+  config.expect_with(:rspec) { |c| c.syntax = :should }
+  config.mock_with(:rspec)   { |c| c.syntax = :should }
 
   config.include FactoryGirl::Syntax::Methods
 
   config.before :suite do
-    DatabaseCleaner.strategy = :truncation#, { except: %w[ roles ]}
+    DatabaseCleaner.strategy = :truncation
   end
 
   config.before :each do
