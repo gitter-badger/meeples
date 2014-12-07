@@ -12,10 +12,6 @@ class ApplicationController < ActionController::Base
     access_denied! exception
   end
 
-  def after_sign_in_path_for resource
-    resource.admin? ? admin_dashboard_path : root_path
-  end
-
 protected
 
   # Rails 4 permitted parameters for devise only controllers

@@ -13,10 +13,6 @@ describe 'Navbar' do
       visit root_path
     end
 
-    it 'does not link to the admin' do
-      should_not have_css(".navbar a[href='#{ admin_dashboard_path }']")
-    end
-
     it 'links to sign in' do
       should have_css(".navbar a[href='#{ new_user_session_path }']")
     end
@@ -34,25 +30,8 @@ describe 'Navbar' do
       visit root_path
     end
 
-    it 'does not link to the admin' do
-      should_not have_css(".navbar a[href='#{ admin_dashboard_path }']")
-    end
-
     it { should have_css "a[href='#{ user_path user }']" }
     it { should have_css "a[href='#{ user_games_path user }']" }
-
-  end
-
-  context 'as an admin' do
-
-    before do
-      login_as admin
-      visit root_path
-    end
-
-    it 'links to the admin' do
-      should have_css(".navbar a[href='#{ admin_dashboard_path }']")
-    end
 
   end
 
