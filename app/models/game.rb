@@ -6,7 +6,7 @@ class Game < ActiveRecord::Base
   require 'open-uri'
   require 'nokogiri'
 
-  has_many :plays
+  has_many :plays, -> { order 'created_at desc' }
   has_many :users, ->{ uniq }, :through => :plays
 
   validates :name, presence: true
