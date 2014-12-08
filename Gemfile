@@ -44,6 +44,10 @@ group :development do
   gem 'foreman'
   gem 'pry-byebug'
   gem 'pry-doc'
+
+  gem 'spring'
+  gem 'spring-commands-rspec'
+  gem 'spring-watcher-listen'
 end
 
 group :development, :test do
