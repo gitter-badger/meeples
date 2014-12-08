@@ -85,11 +85,11 @@ We're using the following heroku addons
 Use the heroku config command to check/set environemnt variables on Heroku.
 
 <!-- links -->
-[ci]: https://magnum.travis-ci.com/devfu/r14-team-36 "build status"
-[cq]: https://codeclimate.com/repos/5446b193e30ba0545800e556/feed "code quality"
+[ci]: https://magnum.travis-ci.com/devfu/meeples "build status"
+[cq]: https://codeclimate.com/repos/5484fa96e30ba0250200b759/feed "code quality"
 
 <!-- images -->
-[cc-image]: https://codeclimate.com/repos/5446b193e30ba0545800e556/badges/d9f1e6a1cde677f9be43/coverage.png
-[ci-image]: https://magnum.travis-ci.com/BM5k/r14-team-36.svg?token=hzo1TAdp6KbDZRs4Cjfs&branch=master
-[cq-image]: https://codeclimate.com/repos/5446b193e30ba0545800e556/badges/d9f1e6a1cde677f9be43/gpa.svg
+[cc-image]: https://codeclimate.com/repos/5484fa96e30ba0250200b759/badges/d6720e7d188940094cba/coverage.png
+[ci-image]: https://magnum.travis-ci.com/devfu/meeples.svg?token=hzo1TAdp6KbDZRs4Cjfs&branch=master
+[cq-image]: https://codeclimate.com/repos/5484fa96e30ba0250200b759/badges/d6720e7d188940094cba/gpa.svg
 [rr-image]: https://d4nnn7wspfa3h.cloudfront.net/rails-rumble-badge-2014-sm.png
