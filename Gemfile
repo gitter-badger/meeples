@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.2.0'
 
-gem 'rails'
+gem 'rails', '~> 4.2.0.rc2'
 
 gem 'cancancan'
 gem 'devise'
