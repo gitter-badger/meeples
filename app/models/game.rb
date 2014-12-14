@@ -11,10 +11,11 @@ class Game < ActiveRecord::Base
 
   validates :name, presence: true
 
-  scope :lookup, ->(n) { where 'lower(name) like ?', "%#{ n.downcase }%" }
-
   def self.bgg_api_search_url query
     "#{BGG_BASE_URL}/xmlapi2/search?query=#{URI.escape query}"
+
+  def self.lookup name
+    where 'lower(name) like ?', "%#{ name.downcase }%"
   end
 
   def self.played_by user_id
