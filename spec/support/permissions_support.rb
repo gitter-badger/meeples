@@ -22,18 +22,18 @@ module PermissionsMatcher
       end
     end
 
-    match_for_should     { login_and_visit ; current_path == path }
-    match_for_should_not { login_and_visit ; current_path != path }
+    match     { login_and_visit ; current_path == path }
+    match_when_negated { login_and_visit ; current_path != path }
 
     description do
       "allow #{ role.inspect } to access #{ helper_from path }"
     end
 
-    failure_message_for_should do
+    failure_message do
       "#{ role.inspect } should be able to access #{ helper_from path }"
     end
 
-    failure_message_for_should_not do
+    failure_message_when_negated do
       "#{ role.inspect } should not be able to access #{ helper_from path }"
     end
 
