@@ -1,10 +1,10 @@
 class Game < ActiveRecord::Base
 
-  BGG_BASE_URL = 'http://www.boardgamegeek.com'
-  BGG_TYPES    = %w[ rpgitem videogame boardgame boardgameexpansion ]
-
   require 'open-uri'
   require 'nokogiri'
+
+  BGG_BASE_URL = 'http://www.boardgamegeek.com'
+  BGG_TYPES    = %w[ rpgitem videogame boardgame boardgameexpansion ]
 
   has_many :plays, -> { order 'created_at desc' }
   has_many :users, -> { uniq }, :through => :plays
