@@ -88,5 +88,5 @@ Use the heroku config command to check/set environemnt variables on Heroku.
 [ci]: https://travis-ci.org/meeples/meeples "build status"
 
 <!-- images -->
-[ci-image]: https://travis-ci.org/meeples/meeples.svg
+[ci-image]: https://travis-ci.org/meeples/meeples.svg?branch=master
 [rr-image]: https://d4nnn7wspfa3h.cloudfront.net/rails-rumble-badge-2014-sm.png
