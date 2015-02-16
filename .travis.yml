@@ -14,8 +14,11 @@ language: ruby
 
 notifications:
   email: false
+  slack:
+    secure: b7xasQE+FCtZ+ppnVADFpCWtSsIUusPbFceEsj1HtWCpTv6GGd4u5WLk6I7sW1zHn8Xlg8Cg5Si3ba1xyGZUxT2rTQnkV5u4BpKNAelCD0bzaYorXYL3O4etuw3+QAsp7tAfVPAmWnr8GcAW4hIfH2bhVuCGuSoiH3T2caEfbbg=
 
-rvm: 2.2.0-preview2
+
+rvm: 2.2.0
 script: RAILS_ENV=test bundle exec rake spec
 services: redis-server
 sudo: false
