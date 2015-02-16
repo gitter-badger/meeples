@@ -13,7 +13,7 @@ Meeple::Application.configure do
   config.force_ssl                         = true
   config.i18n.fallbacks                    = true
   config.log_tags                          = [ :uuid ]
-  config.serve_static_assets               = true
+  config.serve_static_files                = true
   config.static_cache_control              = 'public, max-age=31536000'
 
   config.cache_store = :dalli_store, (ENV['MEMCACHIER_SERVERS'] || '').split(','), {
