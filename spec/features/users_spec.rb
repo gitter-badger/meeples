@@ -111,17 +111,6 @@ describe 'Users' do
         should have_content 'Signed in successfully'
       end
 
-      context 'as an admin' do
-
-        it 'redirects to admin panel' do
-          fill_in_fields :user, login: admin.email, password: 'password'
-          click_button 'Sign in'
-
-          should_be_on admin_dashboard_path
-        end
-
-      end
-
     end
 
     describe 'with facebook' do
