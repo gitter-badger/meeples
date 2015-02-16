@@ -196,6 +196,9 @@ GEM
     rack (1.6.0)
     rack-attack (4.2.0)
       rack
+    rack-canonical-host (0.1.0)
+      addressable
+      rack (~> 1.0)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.0)
@@ -361,6 +364,7 @@ DEPENDENCIES
   pry-doc
   pry-rails
   rack-attack
+  rack-canonical-host
   rails (~> 4.2.0)
   rails4-autocomplete
   rails_12factor

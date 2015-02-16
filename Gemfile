@@ -34,6 +34,7 @@ group :production, :staging do
   gem 'memcachier'
   gem 'newrelic_rpm'
   gem 'rack-attack'
+  gem 'rack-canonical-host'
   gem 'rails_12factor'
   gem 'rollbar'
   gem 'unicorn'
