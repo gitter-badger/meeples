@@ -1,4 +1,4 @@
-Meepl.es [![build status][ci-image]][ci]
+Meepl.es [![build status][ci-image]][ci] [![code climate quality][cq-image]][cq] [![code climate coverage][cc-image]][cc]
 ========================================================================================================
 
 ![rails rumble 2014][rr-image]
@@ -86,7 +86,11 @@ Use the heroku config command to check/set environemnt variables on Heroku.
 
 <!-- links -->
 [ci]: https://travis-ci.org/meeples/meeples "build status"
+[cq]: https://codeclimate.com/github/meeples/meeples
+[cc]: https://codeclimate.com/github/meeples/meeples
 
 <!-- images -->
 [ci-image]: https://travis-ci.org/meeples/meeples.svg?branch=master
+[cq-image]: https://codeclimate.com/github/meeples/meeples/badges/gpa.svg
+[cc-image]: https://codeclimate.com/github/meeples/meeples/badges/coverage.svg
 [rr-image]: https://d4nnn7wspfa3h.cloudfront.net/rails-rumble-badge-2014-sm.png
