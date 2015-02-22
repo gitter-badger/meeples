@@ -6,13 +6,10 @@ describe 'Comments' do
 
   let(:user) { FactoryGirl.create :user }
 
-  describe 'commenting on a friends play' do
+  describe 'commenting on a play' do
 
     it 'should post a comment' do
-      friend = FactoryGirl.create :user
-      play   = FactoryGirl.create :play, user: user
-
-      FactoryGirl.create :friendship, user: user, friend: friend
+      play = FactoryGirl.create :play, user: user
 
       login_as user
       visit play_path(play)
@@ -25,10 +22,6 @@ describe 'Comments' do
 
       Comment.last.author.should == user
     end
-
-    it 'should display author name'
-    it 'should display time posted'
-    it 'should not post a comment to a non-friend'
 
   end
 
