@@ -1,3 +1,6 @@
+addons:
+  postgresql: '9.4'
+
 before_script:
   - curl --silent -L https://gist.githubusercontent.com/BM5k/38c55d9ffaf6f9865949/raw/database.yml -o config/database.yml
   - bundle exec rake db:setup
