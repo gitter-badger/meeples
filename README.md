@@ -1,7 +1,10 @@
-Meepl.es [![build status][ci-image]][ci] [![code climate quality][cq-image]][cq] [![code climate coverage][cc-image]][cc] [![dependency status coverage][gn-image]][gn]
-========================================================================================================
+Meepl.es
+========
 
+[![build status][ci-image]][ci] [![code climate quality][cq-image]][cq] [![code climate coverage][cc-image]][cc] [![dependency status coverage][gn-image]][gn]
+---
 ![rails rumble 2014][rr-image]
+
 
 Track the games you play.
 
@@ -24,9 +27,9 @@ In development & test, environment variables are loaded from `.env`
 
 ### Prerequisites
 
-- ruby 2.0.0+   # rvm install 2.1.3
+- ruby 2.0.0+   # `rvm install 2.1.3`
 - bundler
-- mysql         # brew install mysql
+- mysql         # `brew install mysql`
 - postgresql    # http://postgresapp.com
 
 ```bash
@@ -45,8 +48,8 @@ $ foreman start -f Procfile.local
 
 ### Prerequisites
 
-- phantomjs # brew install phantomjs
-- redis     # brew install redis
+- phantomjs `brew install phantomjs`
+- redis     `brew install redis`
 
 Tools used:
 
