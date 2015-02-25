@@ -1,4 +1,5 @@
 class CreateComments < ActiveRecord::Migration
+
   def change
     create_table :comments do |t|
       t.integer :play_id
@@ -8,4 +9,5 @@ class CreateComments < ActiveRecord::Migration
       t.timestamps
     end
   end
+
 end

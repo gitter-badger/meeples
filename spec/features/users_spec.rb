@@ -65,7 +65,7 @@ describe 'Users' do
                              email:            'user@new-email.com'
 
       click_button 'Update my account'
-      should have_content 'You updated your account successfully, but we need to verify your new email address. Please check your email and click on the confirm link to finalize confirming your new email address.'
+      should have_content I18n.t('devise.registrations.update_needs_confirmation')
     end
 
     it 'can change password' do
@@ -296,7 +296,6 @@ describe 'Users' do
       end
 
     end
-
 
   end
 

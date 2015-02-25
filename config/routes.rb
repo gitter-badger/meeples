@@ -1,5 +1,4 @@
 Meeple::Application.routes.draw do
-
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   resources :games, only: %i[ index show ] do
@@ -17,8 +16,7 @@ Meeple::Application.routes.draw do
     resources :comments, only: [:create]
   end
 
-  resources :friendships, only: [:index, :create]
+  resources :friendships, only: %i[ index create ]
 
   root to: 'welcome#index'
-
 end

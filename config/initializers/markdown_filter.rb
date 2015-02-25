@@ -1,32 +1,32 @@
 class SyntaxRenderer < Redcarpet::Render::HTML
 
-  def block_code code, language
-      "<pre><code>#{ code }</code></pre>"
+  def block_code code, _language
+    "<pre><code>#{ code }</code></pre>"
   end
 
 end
 
 module Haml::Filters
 
-  remove_filter 'Markdown' #remove the existing Markdown filter
+  remove_filter 'Markdown' # remove the existing Markdown filter
 
   module Markdown
 
     include Haml::Filters::Base
 
     def render text
-      renderer = SyntaxRenderer.new optionize([ :with_toc_data, :xhtml ])
+      renderer = SyntaxRenderer.new optionize(%i[ with_toc_data xhtml ])
 
-      markdown = Redcarpet::Markdown.new renderer, optionize([
-        :autolink,
-        :fenced_code_blocks,
-        :no_intra_emphasis,
-        :space_after_headers,
-        :strikethrough,
-        :tables
+      markdown = Redcarpet::Markdown.new renderer, optionize(%i[
+        autolink
+        fenced_code_blocks
+        no_intra_emphasis
+        space_after_headers
+        strikethrough
+        tables
       ])
 
-       markdown.render text
+      markdown.render text
     end
 
   private

@@ -35,4 +35,4 @@ Meeple::Application.configure do
   }
 end
 
-Rack::Utils.key_space_limit = Integer(ENV['KEY_SPACE_LIMIT'] || 65536)
+Rack::Utils.key_space_limit = Integer(ENV['KEY_SPACE_LIMIT'] || 65_536)

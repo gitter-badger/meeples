@@ -14,12 +14,10 @@ module PermissionsMatcher
     end
 
     def helper_from path
-      begin
-        hash = Rails.application.routes.recognize_path path
-        "#{ hash[:controller] }##{ hash[:action] }"
-      rescue
-        path
-      end
+      hash = Rails.application.routes.recognize_path path
+      "#{ hash[:controller] }##{ hash[:action] }"
+    rescue
+      path
     end
 
     match     { login_and_visit ; current_path == path }

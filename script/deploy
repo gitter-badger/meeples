@@ -3,11 +3,11 @@
 url      = `git config --get remote.production.url`.strip
 app_name = url.split(':').last.split('.').first
 
-raise "Unknown app!" if app_name.empty?
+fail 'Unknown app!' if app_name.empty?
 
 system "heroku maintenance:on --app #{ app_name }"
 system "heroku heroku pgbackups:capture --expire --app #{ app_name }"
-system "git push production master"
-system "heroku run rake db:migrate"
+system 'git push production master'
+system 'heroku run rake db:migrate'
 system "heroku maintenance:off --app #{ app_name }"
 system "heroku open --app #{ app_name }"

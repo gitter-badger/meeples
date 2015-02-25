@@ -10,7 +10,7 @@ class Play < ActiveRecord::Base
   validates :game, presence: true
   validates :user, presence: true
 
-  scope :recent, ->{ limit 15 }
+  scope :recent, -> { limit 15 }
 
   attr_accessor :user_usernames
 

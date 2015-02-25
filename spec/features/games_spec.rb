@@ -71,7 +71,7 @@ describe 'Games' do
       end
 
       it 'includes the number of plays' do
-        within("##{ dom_id game }"){ should have_content "#{ game.plays.count }" }
+        within("##{ dom_id game }") { should have_content "#{ game.plays.count }" }
       end
 
     end
@@ -79,15 +79,14 @@ describe 'Games' do
   end
 
   describe 'viewing' do
-
     let(:game) { create :game, name: 'munchkin fu 2' }
 
     before do
       visit game_path game
     end
 
-    it { should have_css "a[href='#{ games_path }']"}
-    it { should have_css "a[href='#{ new_game_play_path game }']"}
+    it { should have_css "a[href='#{ games_path }']" }
+    it { should have_css "a[href='#{ new_game_play_path game }']" }
 
     it 'includes the name' do
       should have_content game.name

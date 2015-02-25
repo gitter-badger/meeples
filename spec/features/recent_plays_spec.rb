@@ -38,7 +38,7 @@ describe 'My Recent Plays' do
   end
 
   it 'links to the game' do
-    plays.map { |p| should have_css "a[href='#{ game_path p.game }']"}
+    plays.map { |p| should have_css "a[href='#{ game_path p.game }']" }
   end
 
   it 'links to the play' do

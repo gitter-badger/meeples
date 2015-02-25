@@ -8,7 +8,7 @@ describe 'Comments' do
 
   describe 'commenting on a play' do
 
-    it 'should post a comment' do
+    it 'posts a comment' do
       play = FactoryGirl.create :play, user: user
 
       login_as user
