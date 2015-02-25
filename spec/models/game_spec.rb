@@ -11,9 +11,9 @@ describe Game do
   describe '#search_bgg!' do
 
     it 'creates games from bgg', :vcr do
-      Game.count.should == 0
-      Game.search_bgg! 'glory to rome'
-      Game.count.should == 3
+      described_class.count.should == 0
+      described_class.search_bgg! 'glory to rome'
+      described_class.count.should == 3
     end
 
   end

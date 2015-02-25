@@ -20,10 +20,10 @@ class User < ActiveRecord::Base
 
   validates :username, presence: true, uniqueness: { case_sensitive: false }
 
-  scope :access_locked,   ->{ where 'locked_at IS NOT NULL AND locked_at >= ?', unlock_in.ago }
-  scope :access_unlocked, ->{ where 'locked_at IS NULL OR locked_at < ?',       unlock_in.ago }
-  scope :admin,           ->{ where admin: true }
-  scope :all_by_username, ->(names){ where('username in (?)', names) }
+  scope :access_locked,   -> { where 'locked_at IS NOT NULL AND locked_at >= ?', unlock_in.ago }
+  scope :access_unlocked, -> { where 'locked_at IS NULL OR locked_at < ?',       unlock_in.ago }
+  scope :admin,           -> { where admin: true }
+  scope :all_by_username, ->(names) { where('username in (?)', names) }
 
   attr_accessor :login
 
@@ -34,14 +34,14 @@ class User < ActiveRecord::Base
     login = conditions.delete(:login)
     query = where(conditions)
     if login
-      query.where('lower(username) = :login OR lower(email) = :login', { login: login.downcase }).first
+      query.where('lower(username) = :login OR lower(email) = :login',  login: login.downcase).first
     else
       query.first
     end
   end
 
   def self.from_omniauth auth
-    password = Devise.friendly_token[0,20]
+    password = Devise.friendly_token[0, 20]
     info = auth.info
     email = info.email
 
@@ -67,11 +67,11 @@ class User < ActiveRecord::Base
   end
 
   def add_recently_viewed game
-    $redis.zadd "recently-viewed-#{id}", Time.now.to_i, {game_id: game.id, game_name: game.name }.to_json
+    Redis.current.zadd "recently-viewed-#{id}", Time.now.to_i, { game_id: game.id, game_name: game.name }.to_json
   end
 
   def recently_viewed start = 1, max = 6
-    recent = $redis.zrevrange "recently-viewed-#{id}", start, max
+    recent = Redis.current.zrevrange "recently-viewed-#{id}", start, max
     recent.map do |payload|
       JSON.parse(payload) rescue {}
     end

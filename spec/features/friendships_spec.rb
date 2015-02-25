@@ -22,7 +22,7 @@ describe 'Friendships' do
       friends.each { |f| should have_content f.username }
     end
 
-    it 'should have a link to view friend' do
+    it 'has a link to view friend' do
       friends.each { |f| should have_css "a[href='#{ user_path f }']" }
     end
 

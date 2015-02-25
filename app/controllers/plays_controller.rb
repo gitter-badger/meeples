@@ -1,6 +1,6 @@
 class PlaysController < ApplicationController
 
-  before_filter :authenticate_user!, except: %i[ index show ]
+  before_action :authenticate_user!, except: %i[ index show ]
 
   load_and_authorize_resource :game
   load_and_authorize_resource :play, shallow: true, :through => :game

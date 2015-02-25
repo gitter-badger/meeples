@@ -4,12 +4,12 @@ url         = `git config --get remote.staging.url`.strip
 app_name    = url.split(':').last.split('.').first
 branch_name = `git rev-parse --symbolic-full-name --abbrev-ref HEAD`.strip
 
-raise "Unknown app!"    if app_name.empty?
-raise "Unknown branch!" if branch_name.empty?
+fail 'Unknown app!'    if app_name.empty?
+fail 'Unknown branch!' if branch_name.empty?
 
 system "heroku maintenance:on --app #{ app_name }"
 system "git push staging #{ branch_name }:master -f"
 system "heroku pg:reset DATABASE_URL --app #{ app_name } --confirm #{ app_name }"
-system "heroku run rake bootstrap:load"
+system 'heroku run rake bootstrap:load'
 system "heroku maintenance:off --app #{ app_name }"
 system "heroku open --app #{ app_name }"

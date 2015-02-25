@@ -1,0 +1,3 @@
+inherit_from: .devfu-rubocop.yml
+
+# Project specific config goes here!

@@ -33,7 +33,7 @@ FactoryGirl.define do
     password_confirmation 'password'
 
     factory :user, aliases: %i[ friend ] do
-      after(:create) { |user, proxy| user.confirm! }
+      after(:create) { |user, _proxy| user.confirm! }
 
       factory :admin do
         after(:create) { |user| user.update_attribute :admin, true }

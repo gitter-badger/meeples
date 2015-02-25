@@ -13,7 +13,6 @@ describe 'Homepage' do
 
   describe 'viewing all plays' do
 
-
   end
 
 end

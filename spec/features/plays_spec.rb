@@ -149,7 +149,7 @@ describe 'Plays' do
     let(:plays) { Play.limit 15 }
 
     before do
-      Timecop.scale(-50000) { create_list :play, 3, with_players: 2 }
+      Timecop.scale(-50_000) { create_list :play, 3, with_players: 2 }
       visit plays_path
     end
 

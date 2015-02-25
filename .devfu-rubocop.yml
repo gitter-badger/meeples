@@ -1,0 +1,117 @@
+require: rubocop-rspec
+
+AllCops:
+  Exclude:
+    - bin/*
+    - db/schema.rb
+    - lib/templates/**/*
+    - vendor/**/*
+  RunRailsCops: true
+
+HashSyntax:
+  Enabled: false
+
+Lint/EndAlignment:
+  AlignWith: variable
+
+Lint/AmbiguousOperator:
+  Enabled: false
+
+Lint/AssignmentInCondition:
+  Enabled: false
+
+Lint/Void:
+  Enabled: false
+
+Metrics/AbcSize:
+  Max: 25
+
+Metrics/MethodLength:
+  Max: 15
+
+Metrics/LineLength:
+  Max: 120
+
+Rails/Output:
+  Enabled: false
+
+Style/AccessModifierIndentation:
+  EnforcedStyle: outdent
+
+Style/Alias:
+  Enabled: false
+
+Style/AndOr:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/CollectionMethods:
+  Enabled: true
+  PreferredMethods:
+    detect: 'detect'
+    inject: 'inject'
+
+Style/Documentation:
+  Enabled: false
+
+Style/EachWithObject:
+  Enabled: false
+
+Style/EmptyLinesAroundClassBody:
+  EnforcedStyle: empty_lines
+
+Style/EmptyLinesAroundModuleBody:
+  Enabled: false
+
+Style/MethodDefParentheses:
+  EnforcedStyle: require_no_parentheses
+
+Style/Not:
+  Enabled: false
+
+Style/PredicateName:
+  Enabled: false
+
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    '%':  '{}'
+    '%Q': '[]'
+    '%W': '[]'
+    '%i': '[]'
+    '%q': '[]'
+    '%r': '{}'
+    '%s': '[]'
+    '%w': '[]'
+    '%x': '[]'
+
+Style/RaiseArgs:
+  Enabled: false
+  # SupportedStyles:
+  #   - compact
+  #   - exploded
+
+Style/RescueModifier:
+  Enabled: false
+
+Style/Semicolon:
+  AllowAsExpressionSeparator: true
+
+Style/SingleLineBlockParams:
+  Methods:
+    - inject:
+      - a
+      - t
+
+Style/SingleSpaceBeforeFirstArg:
+  Enabled: false
+
+Style/SpaceBeforeSemicolon:
+  Enabled: false
+
+Style/SpaceInsideBrackets:
+  Enabled: false
+
+Style/SymbolArray:
+  Enabled: true
