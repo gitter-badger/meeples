@@ -69,6 +69,8 @@ rake spec # this will run all of the RSpec specifications, located in ./spec
 
 Recommended deployment is via [Heroku](http://heroku.com). They have an excellent intro at http://docs.heroku.com/quickstart
 
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
 ### Addons
 
 We're using the following heroku addons
