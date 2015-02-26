@@ -1,0 +1,52 @@
+{
+  "name": "Meepl.es",
+  "description": "Track your favorite games!",
+  "repository": "https://github.com/meeples/meeples",
+  "keywords": [
+    "devise",
+    "heroku",
+    "rails"
+  ],
+  "addons": [
+    "heroku-postgresql:hobby-dev",
+    "memcachier:dev",
+    "newrelic:stark",
+    "papertrail:choklad",
+    "pgbackups:plus",
+    "rollbar:free",
+    "sendgrid:starter"
+  ],
+  "env": {
+    "EMAIL_HOST": {
+      "description": "The hostname used in outgoing emails.",
+      "required": false
+    },
+    "FACEBOOK_APP_ID": {
+      "description": "App id from Facebook",
+      "required": false
+    },
+    "FACEBOOK_SECRET": {
+      "description": "App secret from Facebook",
+      "required": false
+    },
+    "GITHUB_APP_ID": {
+      "description": "App id from Github",
+      "required": false
+    },
+    "GITHUB_SECRET": {
+      "description": "App secret from Github",
+      "required": false
+    },
+    "SECRET_TOKEN": {
+      "description": "A secret key for verifying the integrity of signed cookies.",
+      "generator": "secret"
+    },
+    "UNICORN_WORKERS": {
+      "description": "Number of unicorn workers to start (default: 3)",
+      "generator": "3"
+    }
+  },
+  "scripts": {
+    "postdeploy": "bundle exec rake bootstrap"
+  }
+}
