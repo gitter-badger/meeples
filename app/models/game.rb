@@ -1,20 +1,22 @@
 class Game < ActiveRecord::Base
 
-  BGG_BASE_URL = 'http://www.boardgamegeek.com'
-  BGG_TYPES    = %w[ rpgitem videogame boardgame boardgameexpansion ]
-
   require 'open-uri'
   require 'nokogiri'
+
+  BGG_BASE_URL = 'http://www.boardgamegeek.com'
+  BGG_TYPES    = %w[ rpgitem videogame boardgame boardgameexpansion ]
 
   has_many :plays, -> { order 'created_at desc' }
   has_many :users, -> { uniq }, :through => :plays
 
   validates :name, presence: true
 
-  scope :lookup, ->(n) { where 'lower(name) like ?', "%#{ n.downcase }%" }
-
   def self.bgg_api_search_url query
-    "#{BGG_BASE_URL}/xmlapi2/search?query=#{URI.escape query}"
+    "#{ BGG_BASE_URL }/xmlapi2/search?query=#{ URI.escape query }"
+  end
+
+  def self.lookup name
+    where 'lower(name) like ?', "%#{ name.downcase }%"
   end
 
   def self.played_by user_id
@@ -55,7 +57,7 @@ class Game < ActiveRecord::Base
 
   def bgg_link
     return unless bgg_type
-    "#{BGG_BASE_URL}/#{bgg_type}/#{bgg_id}/#{URI.encode name}"
+    "#{ BGG_BASE_URL }/#{ bgg_type }/#{ bgg_id }/#{ URI.encode name }"
   end
 
   def avg_rating
@@ -66,7 +68,7 @@ class Game < ActiveRecord::Base
   end
 
   def stack_exchange_link
-    "http://boardgames.stackexchange.com/search?q=#{name}"
+    "http://boardgames.stackexchange.com/search?q=#{ name }"
   end
 
 end

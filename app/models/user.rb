@@ -12,11 +12,11 @@ class User < ActiveRecord::Base
 
   devise :omniauthable, omniauth_providers: %i[ facebook github ]
 
-  has_many :friends,      :through => :friendships
+  has_many :comments,   :as => 'Author'
+  has_many :friends,    :through => :friendships
   has_many :friendships
-  has_many :games,                                       :through => :plays
-  has_many :plays,        -> { order 'plays.created_at desc' }
-  has_many :comments, :as => 'Author'
+  has_many :games,      :through => :plays
+  has_many :plays,      -> { order 'plays.created_at desc' }
 
   validates :username, presence: true, uniqueness: { case_sensitive: false }
 
