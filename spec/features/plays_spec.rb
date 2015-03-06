@@ -36,14 +36,13 @@ describe 'Plays' do
         should have_content 'Play was successfully created'
       end
 
-      describe 'adding players', :js do
+      describe 'adding players' do
 
         let(:player) { create :user }
 
         before do
-          skip 'JS testing for autocomplete for now until we have time to figure it out'
           fill_in_fields :play, user_usernames: player.username
-          click_button 'play'
+          click_button 'Add Play'
         end
 
         it 'shows success message' do
@@ -52,8 +51,10 @@ describe 'Plays' do
 
         it 'shows number of players added' do
           should have_content 'Playing with 1 player'
-          shoudl have_content player.username
+          should have_content player.username
         end
+
+        it 'autocompletes usernames', :js
 
       end
 
