@@ -4,7 +4,7 @@
 Vagrant.configure(2) do |config|
   # Box config
   config.vm.box = 'mtchavez/rails-dev'
-  config.vm.box_version = '>= 0.0.2'
+  config.vm.box_version = '>= 0.0.3'
 
   # Set up network
   config.vm.network 'private_network', ip: '192.168.33.10'
