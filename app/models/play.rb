@@ -12,6 +12,8 @@ class Play < ActiveRecord::Base
 
   scope :recent, -> { limit 15 }
 
+  after_validation :add_creator_to_players
+
   attr_reader :user_usernames
 
   def self.unique_users
@@ -25,6 +27,12 @@ class Play < ActiveRecord::Base
   def user_usernames= name_or_names
     usernames = name_or_names.first.split ','
     self.player_ids = User.where(username: usernames).uniq.pluck :id
+  end
+
+private
+
+  def add_creator_to_players
+    self.players |= [user]
   end
 
 end
