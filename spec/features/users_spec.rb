@@ -21,8 +21,8 @@ describe 'Users' do
       should have_content 'Could not sign up!'
 
       # valid data
-      fill_in_fields 'user', email:                 'user@testing.com',
-                             username:              'usertest',
+      fill_in_fields 'user', email:                 Faker::Internet.email,
+                             username:              Faker::Internet.user_name,
                              password:              'password',
                              password_confirmation: 'password'
 
@@ -55,14 +55,14 @@ describe 'Users' do
 
     it 'can change email' do
       # without current password
-      fill_in_fields 'user', email: 'user@new-email.com'
+      fill_in_fields 'user', email: Faker::Internet.email
 
       click_button 'Update my account'
       should have_content 'Could not update your account!'
 
       # with current password
       fill_in_fields 'user', current_password: 'password',
-                             email:            'user@new-email.com'
+                             email:            Faker::Internet.email
 
       click_button 'Update my account'
       should have_content I18n.t('devise.registrations.update_needs_confirmation')
