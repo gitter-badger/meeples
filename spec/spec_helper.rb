@@ -24,8 +24,10 @@ RSpec.configure do |config|
   config.filter_run focus: true
   config.infer_spec_type_from_file_location!
 
+  config.default_retry_count              = Integer ENV['RSPEC_RETRY_COUNT'] || 1
   config.run_all_when_everything_filtered = true
   config.use_transactional_fixtures       = false
+  config.verbose_retry                    = true
 
   # This is Dev Fu!, we don't `expect` around here!
   config.expect_with(:rspec) { |c| c.syntax = :should }
