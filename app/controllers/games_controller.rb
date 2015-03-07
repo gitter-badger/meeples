@@ -11,6 +11,16 @@ class GamesController < ApplicationController
     respond_with @games
   end
 
+  def new
+    @game = Game.new
+  end
+
+  def create
+    @game.added_by = current_user.id if current_user
+    @game.save
+    respond_with @game
+  end
+
   def show
     @plays = @game.plays.page params[:page]
     current_user.add_recently_viewed @game if current_user
@@ -18,6 +28,12 @@ class GamesController < ApplicationController
   end
 
   def recently_viewed
+  end
+
+private
+
+  def game_params
+    params.require(:game).permit :name, :year_published
   end
 
 end
