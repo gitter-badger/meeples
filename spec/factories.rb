@@ -26,9 +26,9 @@ FactoryGirl.define do
   end
 
   factory :unconfirmed_user, class: User do
-    sequence(:email) { |n| "user#{ n }@testing.com" }
-
+    email                 { Faker::Internet.email }
     username              { Faker::Internet.user_name }
+
     password              'password'
     password_confirmation 'password'
 
