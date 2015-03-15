@@ -142,6 +142,10 @@ describe 'Plays' do
       text.should =~ /#{ names.join '.+' }/m
     end
 
+    after do
+      Timecop.return
+    end
+
   end
 
   describe 'viewing all plays' do
