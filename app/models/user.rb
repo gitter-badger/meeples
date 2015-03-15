@@ -67,6 +67,11 @@ class User < ActiveRecord::Base
     end
   end
 
+  def activity
+    user_ids = friendship_ids.push(id)
+    Play.where('user_id in (?)', user_ids).order('created_at DESC').limit(15)
+  end
+
   def add_recently_viewed game
     Redis.current.zadd "recently-viewed-#{id}", Time.now.to_i, { game_id: game.id, game_name: game.name }.to_json
   end
