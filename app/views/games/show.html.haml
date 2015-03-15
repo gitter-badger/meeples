@@ -70,3 +70,9 @@
               avg rating
             %p
               = link_to 'view', game_path(recent['game_id']), class: 'btn-sm btn-info'
+
+- if current_user && !@game.flagged_by?(current_user)
+  .row-fluid.col-sm-12
+    %p
+      See something wrong or inappropriate?
+      = link_to 'Flag Game', new_game_flag_games_path(@game)

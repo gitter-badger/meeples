@@ -188,4 +188,56 @@ describe 'Games' do
 
   end
 
+  describe 'flagging' do
+
+    let(:game) { create :game, name: 'munchkin fu 2' }
+
+    context 'as a guest' do
+
+      before do
+        visit game_path game
+      end
+
+      it 'link is not shown' do
+        should_not have_css "a[href='#{ new_game_flag_games_path game }']"
+      end
+
+    end
+
+    context 'when logged in' do
+
+      let(:user) { create :user }
+
+      before do
+        login_as user
+        visit game_path game
+      end
+
+      it 'has link to flag game' do
+        should have_css "a[href='#{ new_game_flag_games_path game }']"
+      end
+
+      it 'displays message that game has been flagged' do
+        click_link 'Flag Game'
+        click_button 'Flag Game'
+        should have_content "You have flagged #{game.name}"
+      end
+
+      describe 'and already flagged' do
+
+        before do
+          create :flag_game, user: user, game: game
+          visit game_path game
+        end
+
+        it 'link is not displayed' do
+          should_not have_css "a[href='#{ new_game_flag_games_path game }']"
+        end
+
+      end
+
+    end
+
+  end
+
 end
