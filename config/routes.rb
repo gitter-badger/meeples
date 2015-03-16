@@ -6,6 +6,7 @@ Meeple::Application.routes.draw do
     resources :plays, only: %i[ new create show ], shallow: true do
       get :autocomplete_user_usernames, :on => :collection
     end
+    resource :flag_games, only: %i[ new create ], path: 'flag'
   end
 
   resources :users, only: %i[ index show ] do

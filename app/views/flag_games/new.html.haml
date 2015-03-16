@@ -1,0 +1,10 @@
+.row-fluid.col-sm-12
+  %h2
+    Flag
+    %small
+      = @game.name
+
+.row-fluid.col-sm-12
+  = simple_form_for [@game, @flag_game] do |f|
+    = f.input :description
+    = f.submit 'Flag Game', class: 'btn btn-success'

@@ -6,6 +6,7 @@ class Game < ActiveRecord::Base
   BGG_BASE_URL = 'http://www.boardgamegeek.com'
   BGG_TYPES    = %w[ rpgitem videogame boardgame boardgameexpansion ]
 
+  has_many :flags, through: 'user_flagged_games'
   has_many :plays, -> { order 'created_at desc' }
   has_many :users, -> { uniq }, :through => :plays
 
@@ -69,6 +70,10 @@ class Game < ActiveRecord::Base
 
   def stack_exchange_link
     "http://boardgames.stackexchange.com/search?q=#{ name }"
+  end
+
+  def flagged_by? user
+    FlagGame.where(user_id: user.id, game_id: id).any?
   end
 
 end

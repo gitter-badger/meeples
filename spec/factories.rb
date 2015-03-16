@@ -47,4 +47,9 @@ FactoryGirl.define do
     user
   end
 
+  factory :flag_game do
+    user
+    game
+  end
+
 end
