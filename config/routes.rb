@@ -1,7 +1,7 @@
 Meeple::Application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
-  resources :games, only: %i[ index show ] do
+  resources :games, only: %i[ index show new create] do
     get :recently_viewed, :on => :collection
     resources :plays, only: %i[ new create show ], shallow: true do
       get :autocomplete_user_usernames, :on => :collection

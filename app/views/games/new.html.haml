@@ -1,0 +1,13 @@
+.row-fluid.col-sm-12
+  %h2
+    New Game
+
+.row-fluid.col-sm-12
+  = simple_form_for @game do |f|
+    = f.input :name
+    .form-group.string.optional.game_year_published
+      = f.label :year_published, 'Year Published'
+      %div
+        = f.select :year_published, options_for_select((1901..Date.current.year), selected: nil), include_blank: true
+    = f.submit 'Add', class: 'btn btn-success'
+    = link_to 'back to games', games_path
