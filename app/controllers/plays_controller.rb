@@ -17,9 +17,6 @@ class PlaysController < ApplicationController
 
   def create
     @play.user = current_user
-    usernames = params[:play][:user_usernames].to_a.first.split(',')
-    usernames.reject! { |name| name.downcase == current_user.username.downcase }
-    @play.player_ids = User.all_by_username(usernames.uniq).select(:id).map(&:id)
     @play.save
     respond_with @play
   end

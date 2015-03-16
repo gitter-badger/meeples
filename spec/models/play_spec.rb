@@ -9,4 +9,15 @@ describe Play do
 
   end
 
+  describe '#players' do
+
+    let(:user) { create :user }
+    let(:play) { create :play, user: user }
+
+    it 'always includes the play creator' do
+      play.players.should include(user)
+    end
+
+  end
+
 end

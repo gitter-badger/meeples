@@ -12,7 +12,9 @@ class Play < ActiveRecord::Base
 
   scope :recent, -> { limit 15 }
 
-  attr_accessor :user_usernames
+  after_validation :add_creator_to_players
+
+  attr_reader :user_usernames
 
   def self.unique_users
     select('distinct user_id').count
@@ -20,6 +22,17 @@ class Play < ActiveRecord::Base
 
   def self.unique_games
     select('distinct game_id').count
+  end
+
+  def user_usernames= name_or_names
+    usernames = name_or_names.first.split ','
+    self.player_ids = User.where(username: usernames).uniq.pluck :id
+  end
+
+private
+
+  def add_creator_to_players
+    self.players |= [user]
   end
 
 end

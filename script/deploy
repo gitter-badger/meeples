@@ -8,6 +8,6 @@ fail 'Unknown app!' if app_name.empty?
 system "heroku maintenance:on --app #{ app_name }"
 system "heroku heroku pgbackups:capture --expire --app #{ app_name }"
 system 'git push production master'
-system 'heroku run rake db:migrate'
+system 'heroku run rake db:migrate upgrade:latest'
 system "heroku maintenance:off --app #{ app_name }"
 system "heroku open --app #{ app_name }"

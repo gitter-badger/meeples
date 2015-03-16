@@ -7,14 +7,16 @@
 
 .row-fluid.col-sm-12
   = simple_form_for [@game, @play] do |f|
+
     .form-group.optional
       = f.label :rating, 'Game Rating'
       %div
         = f.select :rating, 0..5
     = f.input :description
+
     .form-group.string.optional.play_description
       = f.label :user_usernames, 'Playing with (usernames)'
       %div
-        = f.autocomplete_field :user_usernames, autocomplete_user_usernames_game_plays_path,
-  'data-delimiter' => ',', :multiple => true, as: :autocomplete, class: 'string optional form-control'
+        = f.autocomplete_field :user_usernames, autocomplete_user_usernames_game_plays_path, 'data-delimiter' => ',', multiple: true, :as => :autocomplete, class: 'string optional form-control'
+
     = f.submit 'Add Play', class: 'btn btn-success'
