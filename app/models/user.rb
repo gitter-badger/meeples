@@ -68,8 +68,9 @@ class User < ActiveRecord::Base
   end
 
   def activity
+    # Add the user id to the list so their activities show up in the query
     user_ids = friendship_ids.push(id)
-    Play.where('user_id in (?)', user_ids).order('created_at DESC').limit(15)
+    Play.where(user_id: user_ids).order('created_at DESC').limit(15)
   end
 
   def add_recently_viewed game
