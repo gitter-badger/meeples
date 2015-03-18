@@ -19,5 +19,10 @@ Meeple::Application.routes.draw do
 
   resources :friendships, only: %i[ index create ]
 
+  resource :activities, only: %i[ index ]
+
+  authenticated :user do
+    root to: 'activities#index', as: 'authenticated_root'
+  end
   root to: 'welcome#index'
 end
