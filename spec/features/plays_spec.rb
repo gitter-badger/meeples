@@ -177,4 +177,75 @@ describe 'Plays' do
 
   end
 
+  describe 'deleting a play' do
+
+    let(:player_one) { create :user }
+    let(:player_two) { create :user } # as it should be.
+    let!(:play)      { create :play, user: player_one }
+
+    context 'current logged in player' do
+
+      before do
+        login_as player_one
+      end
+
+      context 'user page' do
+
+        it 'deletes a play' do
+          visit user_path player_one
+          should have_content play.game.name
+
+          click_button 'Delete'
+
+          should_be_on plays_path
+          should have_no_content play.game.name
+          should have_content 'Play was successfully destroyed.'
+        end
+
+      end
+
+      context 'play page' do
+
+        it 'deletes a play' do
+          visit play_path play
+
+          click_button 'Delete Play'
+
+          should_be_on plays_path
+          should have_no_content play.game.name
+          should have_content 'Play was successfully destroyed.'
+        end
+
+      end
+
+    end
+
+    context 'a different player' do
+
+      context 'user page' do
+
+        it 'only shows the delete button for current users plays' do
+          login_as player_two
+          visit user_path player_one
+
+          should have_no_button 'Delete'
+        end
+
+      end
+
+      context 'play page' do
+
+        it 'only shows the delete button for current users plays' do
+          login_as player_two
+          visit play_path play
+
+          should have_no_button 'Delete Play'
+        end
+
+      end
+
+    end
+
+  end
+
 end
