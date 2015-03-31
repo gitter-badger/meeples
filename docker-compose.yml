@@ -1,0 +1,12 @@
+web:
+  build: .
+  command: foreman start -f Procfile.dev
+  links:
+    - db
+    - redis
+  ports:
+    - "5000:5000"
+db:
+  image: "postgres:latest"
+redis:
+  image: "redis:latest"
