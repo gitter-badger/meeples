@@ -55,7 +55,7 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'faker'
   gem 'rspec-rails'
-  gem 'rubocop',       require: false
+  gem 'rubocop',       require: false, git: 'https://github.com/bbatsov/rubocop.git'
   gem 'rubocop-rspec', require: false
 end
 

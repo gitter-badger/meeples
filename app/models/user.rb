@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
     login = conditions.delete(:login)
     query = where(conditions)
     if login
-      query.where('lower(username) = :login OR lower(email) = :login',  login: login.downcase).first
+      query.find_by('lower(username) = :login OR lower(email) = :login',  login: login.downcase)
     else
       query.first
     end
@@ -74,7 +74,7 @@ class User < ActiveRecord::Base
   end
 
   def add_recently_viewed game
-    Redis.current.zadd "recently-viewed-#{id}", Time.now.to_i, { game_id: game.id, game_name: game.name }.to_json
+    Redis.current.zadd "recently-viewed-#{id}", Time.current.to_i, { game_id: game.id, game_name: game.name }.to_json
   end
 
   def recently_viewed start = 1, max = 6

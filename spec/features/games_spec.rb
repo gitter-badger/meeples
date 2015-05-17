@@ -55,7 +55,7 @@ describe 'Games' do
 
     it 'shows success message when created' do
       fill_in_fields game_name: Faker::Company.name
-      select Time.now.year, from: 'game_year_published'
+      select Time.current.year, from: 'game_year_published'
       click_button 'Add'
       should have_content 'Game was successfully created'
     end
