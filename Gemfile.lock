@@ -397,3 +397,6 @@ DEPENDENCIES
   validation_matcher
   vcr
   webmock
+
+BUNDLED WITH
+   1.10.2

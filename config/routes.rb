@@ -13,7 +13,7 @@ Meeple::Application.routes.draw do
     get 'games' => 'users#games'
   end
 
-  resources :plays, only: %i[ index ] do
+  resources :plays, only: %i[ index destroy ] do
     resources :comments, only: [:create]
   end
 

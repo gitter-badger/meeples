@@ -28,6 +28,12 @@ class PlaysController < ApplicationController
     respond_with @play
   end
 
+  def destroy
+    @play.destroy
+
+    respond_with @play
+  end
+
 private
 
   def play_params

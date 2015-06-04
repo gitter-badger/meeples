@@ -14,6 +14,7 @@
         %th.col-sm-2 Played
         %th.col-sm-2 User Rating
         %th.col-sm-2 Avg. Rating
+        %th.col-sm-2
 
     %tbody
       - for play in @user.plays.recent
@@ -26,3 +27,6 @@
               ago
           %td= play.rating.to_i
           %td= play.game.avg_rating
+          %td
+            - if can? :destroy, play
+              = button_to 'Delete', play_path(play), :method => :delete, data: { confirm: 'are you sure you want to delete this play?' }, class: 'btn btn-danger'
