@@ -107,10 +107,16 @@ Style/SingleLineBlockParams:
 Style/SingleSpaceBeforeFirstArg:
   Enabled: false
 
+Style/SpaceAroundOperators:
+  Enabled: false
+
 Style/SpaceBeforeSemicolon:
   Enabled: false
 
 Style/SpaceInsideBrackets:
+  Enabled: false
+
+Style/SpaceInsideStringInterpolation:
   Enabled: false
 
 Style/SymbolArray:
