@@ -1,9 +1,10 @@
-.navbar.navbar-default.navbar-fixed-bottom
-  .container-fluid
-    .navbar-text.visible-lg
-      &copy; 2014 Meepl.es
+.visible-md
+  .navbar.navbar-default.navbar-fixed-bottom
+    .container-fluid
+      .navbar-text.pull-left
+        There are #{ pluralize Game.count, 'game' }.
+        There are #{ pluralize User.count, 'user' }.
+        #{ pluralize Play.unique_users, 'person' } have played #{ pluralize Play.unique_games, 'game' }.
 
-    .navbar-text.visible-md.visible-lg
-      There are #{ pluralize Game.count, 'game' }.
-      There are #{ pluralize User.count, 'user' }.
-      #{ pluralize Play.unique_users, 'person' } have played #{ pluralize Play.unique_games, 'game' }.
+      .navbar-text.pull-right
+        &copy; 2014 Meepl.es
