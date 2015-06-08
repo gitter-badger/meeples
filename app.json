@@ -10,9 +10,9 @@
   "addons": [
     "heroku-postgresql:hobby-dev",
     "memcachier:dev",
-    "newrelic:stark",
+    "newrelic:wayne",
     "papertrail:choklad",
-    "pgbackups:plus",
+    "rediscloud:30",
     "rollbar:free",
     "sendgrid:starter"
   ],
@@ -43,7 +43,7 @@
     },
     "UNICORN_WORKERS": {
       "description": "Number of unicorn workers to start (default: 3)",
-      "generator": "3"
+      "value": "3"
     }
   },
   "scripts": {
