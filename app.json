@@ -10,9 +10,9 @@
   "addons": [
     "heroku-postgresql:hobby-dev",
     "memcachier:dev",
-    "newrelic:stark",
+    "newrelic:wayne",
     "papertrail:choklad",
-    "pgbackups:plus",
+    "rediscloud:30",
     "rollbar:free",
     "sendgrid:starter"
   ],
