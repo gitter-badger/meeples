@@ -49,10 +49,6 @@
     "RAILS_ENV": {
       "required": false
     },
-    "SECRET_TOKEN": {
-      "description": "A secret key for verifying the integrity of signed cookies.",
-      "generator": "secret"
-    },
     "UNICORN_WORKERS": {
       "description": "Number of unicorn workers to start (default: 3)",
       "value": "3"

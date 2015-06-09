@@ -11,7 +11,7 @@ cache: bundler
 
 env:
   global:
-    - SECRET_TOKEN=28e8c098272e0f03d31ae8b52aac6eb4fd14aee5fd299090ef490202b56b4d53f2a133c23c70baf51cd0d81a8a0a9567cb38b5a437389f9edbdc7c1725ba8470
+    - SECRET_KEY_BASE=28e8c098272e0f03d31ae8b52aac6eb4fd14aee5fd299090ef490202b56b4d53f2a133c23c70baf51cd0d81a8a0a9567cb38b5a437389f9edbdc7c1725ba8470
 
 language: ruby
 
