@@ -1,3 +1,4 @@
+require Rails.root.join *%w[ config heroku ]
 require Rails.root.join *%w[ lib rollbar ]
 
 Meeple::Application.configure do
