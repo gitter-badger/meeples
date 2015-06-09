@@ -43,6 +43,12 @@
     "HEROKU_PARENT_APP_NAME": {
       "required": false
     },
+    "RACK_ENV": {
+      "required": false
+    },
+    "RAILS_ENV": {
+      "required": false
+    },
     "SECRET_TOKEN": {
       "description": "A secret key for verifying the integrity of signed cookies.",
       "generator": "secret"
