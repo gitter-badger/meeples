@@ -1,5 +1,5 @@
 require Rails.root.join *%w[ config heroku ]
-require Rails.root.join *%w[ lib rollbar ]
+require Rails.root.join *%w[ config rollbar ]
 
 Meeple::Application.configure do
   config.action_controller.perform_caching = true
