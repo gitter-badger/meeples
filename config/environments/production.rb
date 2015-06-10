@@ -17,7 +17,10 @@ Meeple::Application.configure do
   config.serve_static_files                = ENV['RAILS_SERVE_STATIC_FILES'].present?
   config.static_cache_control              = 'public, max-age=31536000'
 
-  config.action_mailer.default_url_options = { host: ENV['EMAIL_HOST'] }
+  config.action_mailer.default_url_options = {
+    host: ENV['HEROKU_HOST'] || ENV['EMAIL_HOST'] || ENV['CANONICAL_HOST']
+  }
+
   config.action_mailer.smtp_settings = {
     :address        => 'smtp.sendgrid.net',
     :port           => '25',
