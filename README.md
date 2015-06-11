@@ -13,7 +13,7 @@ Track the games you play.
 In development & test, environment variables are loaded from `.env`
 
   - **EMAIL_HOST**: hostname to use in email links
-  - **SECRET_TOKEN**: secret token for rails
+  - **SECRET_KEY_BASE**: secret token for rails
   - **UNICORN_WORKERS**: number of unicorn workers to start
 
 #### Omniauth Providers

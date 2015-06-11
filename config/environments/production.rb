@@ -1,4 +1,5 @@
-require Rails.root.join *%w[ lib rollbar ]
+require Rails.root.join *%w[ config heroku ]
+require Rails.root.join *%w[ config rollbar ]
 
 Meeple::Application.configure do
   config.action_controller.perform_caching = true
@@ -13,10 +14,13 @@ Meeple::Application.configure do
   config.force_ssl                         = true
   config.i18n.fallbacks                    = true
   config.log_tags                          = [ :uuid ]
-  config.serve_static_files                = true
+  config.serve_static_files                = ENV['RAILS_SERVE_STATIC_FILES'].present?
   config.static_cache_control              = 'public, max-age=31536000'
 
-  config.action_mailer.default_url_options = { host: ENV['EMAIL_HOST'] }
+  config.action_mailer.default_url_options = {
+    host: ENV['HEROKU_HOST'] || ENV['EMAIL_HOST'] || ENV['CANONICAL_HOST']
+  }
+
   config.action_mailer.smtp_settings = {
     :address        => 'smtp.sendgrid.net',
     :port           => '25',

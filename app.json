@@ -37,9 +37,17 @@
       "description": "App secret from Github",
       "required": false
     },
-    "SECRET_TOKEN": {
-      "description": "A secret key for verifying the integrity of signed cookies.",
-      "generator": "secret"
+    "HEROKU_APP_NAME": {
+      "required": false
+    },
+    "HEROKU_PARENT_APP_NAME": {
+      "required": false
+    },
+    "RACK_ENV": {
+      "required": false
+    },
+    "RAILS_ENV": {
+      "required": false
     },
     "UNICORN_WORKERS": {
       "description": "Number of unicorn workers to start (default: 3)",
