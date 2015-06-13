@@ -47,17 +47,17 @@ describe 'Games' do
       visit new_game_path
     end
 
-    it 'requires unique name' do
-      click_button 'Add'
+    it 'creates a game' do
+      # invalid data
+      click_button 'Add game'
       should have_content 'Game was not successfully created!'
-      should have_content "Namecan't be blank"
-    end
 
-    it 'shows success message when created' do
-      fill_in_fields game_name: Faker::Company.name
-      select Time.current.year, from: 'game_year_published'
-      click_button 'Add'
-      should have_content 'Game was successfully created'
+      # valid data
+      fill_in_fields :game, name:           Faker::Company.name,
+                            year_published: rand(10).year.ago.year
+
+      click_button 'Add game'
+      should have_content 'Game was successfully created.'
     end
 
   end
