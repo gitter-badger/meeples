@@ -1,6 +1,8 @@
 Meepl.es
 ========
 
+[![Join the chat at https://gitter.im/meeples/meeples](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/meeples/meeples?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![build status][ci-image]][ci] [![code climate quality][cq-image]][cq] [![code climate coverage][cc-image]][cc] [![dependency status coverage][gn-image]][gn]
 ---
 ![rails rumble 2014][rr-image]
